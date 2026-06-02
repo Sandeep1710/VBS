@@ -11,17 +11,17 @@ class BannerSeeder extends Seeder
     {
         $banners = [
             [
-                'title' => 'Genuine Vehicle Batteries Online',
-                'subtitle' => 'Free delivery and old battery exchange.',
+                'title' => 'Same-day Battery Delivery across Mumbai',
+                'subtitle' => 'Free delivery + free installation + old battery exchange in all Mumbai pincodes.',
                 'image' => 'banners/hero-1.svg',
                 'link_url' => '/products',
-                'link_text' => 'Shop Now',
+                'link_text' => 'Shop Batteries',
                 'position' => 'home_hero',
                 'sort_order' => 1,
             ],
             [
                 'title' => 'Up to ₹800 Off on Old Battery Exchange',
-                'subtitle' => 'Get instant value for your old battery.',
+                'subtitle' => 'Hand over your old battery at delivery and save instantly. No paperwork.',
                 'image' => 'banners/hero-2.svg',
                 'link_url' => '/products?exchange=1',
                 'link_text' => 'View Offers',

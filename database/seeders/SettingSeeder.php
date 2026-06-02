@@ -11,22 +11,22 @@ class SettingSeeder extends Seeder
     {
         $settings = [
             ['general', 'site_name', 'Vehicle Battery Store', 'string', 'Site Name', true],
-            ['general', 'site_tagline', 'Genuine Batteries. Free Doorstep Delivery.', 'string', 'Site Tagline', true],
-            ['general', 'support_email', 'support@vehiclebattery.test', 'string', 'Support Email', true],
-            ['general', 'support_phone', '1800-XXX-XXXX', 'string', 'Support Phone', true],
-            ['general', 'whatsapp_number', '+919000000000', 'string', 'WhatsApp Number', true],
-            ['general', 'address', 'Sector 18, Industrial Area, Mumbai 400001', 'text', 'Office Address', true],
+            ['general', 'site_tagline', "Mumbai's #1 battery delivery service · Same-day delivery", 'string', 'Site Tagline', true],
+            ['general', 'support_email', 'support@yourdomain.com', 'string', 'Support Email', true],
+            ['general', 'support_phone', '022-XXXX-XXXX', 'string', 'Support Phone', true],
+            ['general', 'whatsapp_number', '+919XXXXXXXXX', 'string', 'WhatsApp Number', true],
+            ['general', 'address', '[Your Shop Address], Mumbai, Maharashtra 400XXX', 'text', 'Office Address', true],
 
-            ['order', 'default_tax_percent', '18', 'integer', 'Default GST %'],
-            ['order', 'default_delivery_charge', '99', 'integer', 'Default Delivery Charge (₹)'],
+            ['order', 'default_tax_percent', '18', 'integer', 'Default GST % (CGST 9 + SGST 9)'],
+            ['order', 'default_delivery_charge', '99', 'integer', 'Default Delivery Charge (₹) for outside-Mumbai pincodes'],
             ['order', 'free_delivery_above', '2000', 'integer', 'Free Delivery Above (₹)'],
             ['order', 'cod_max_amount', '20000', 'integer', 'Max COD Amount (₹)'],
 
             ['social', 'facebook', 'https://facebook.com/', 'string', 'Facebook URL', true],
             ['social', 'instagram', 'https://instagram.com/', 'string', 'Instagram URL', true],
 
-            ['seo', 'default_meta_title', 'Vehicle Battery Store - Buy Car & Bike Batteries Online', 'string', 'Default Meta Title'],
-            ['seo', 'default_meta_description', 'Buy genuine car and bike batteries online with free doorstep delivery, warranty, and old battery exchange.', 'text', 'Default Meta Description'],
+            ['seo', 'default_meta_title', 'Buy Car & Bike Batteries Online in Mumbai — Same-day Delivery', 'string', 'Default Meta Title'],
+            ['seo', 'default_meta_description', "Mumbai's #1 battery delivery service. Buy genuine Exide, Amaron, SF Sonic batteries with same-day delivery, free installation and old battery exchange across Mumbai, Thane and Navi Mumbai.", 'text', 'Default Meta Description'],
 
             ['payment', 'cod_enabled', '1', 'boolean', 'Enable COD'],
             ['payment', 'upi_enabled', '1', 'boolean', 'Enable UPI'],

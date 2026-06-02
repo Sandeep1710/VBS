@@ -15,11 +15,27 @@
             ],
         ],
         [
+            'heading' => 'Sales',
+            'items' => [
+                ['label' => 'Orders', 'route' => 'admin.orders.index', 'match' => 'admin.orders.*', 'icon' => 'M3 7h18v13H3z M8 7V4h8v3'],
+                ['label' => 'Coupons', 'route' => 'admin.coupons.index', 'match' => 'admin.coupons.*', 'icon' => 'M20.6 11.4 12.4 3.2A2 2 0 0 0 11 2.6L4 3a2 2 0 0 0-2 2v6a2 2 0 0 0 .6 1.4l8.2 8.2a2 2 0 0 0 2.8 0l7-7a2 2 0 0 0 0-2.2zM7 7a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'],
+                ['label' => 'Returns', 'route' => 'admin.returns.index', 'match' => 'admin.returns.*', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
+                ['label' => 'Warranty Claims', 'route' => 'admin.warranty-claims.index', 'match' => 'admin.warranty-claims.*', 'icon' => 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
+            ],
+        ],
+        [
             'heading' => 'Catalog',
             'items' => [
                 ['label' => 'Products', 'route' => 'admin.products.index', 'match' => 'admin.products.*', 'icon' => 'M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z M3.3 7 12 12l8.7-5 M12 22V12'],
                 ['label' => 'Categories', 'route' => 'admin.categories.index', 'match' => 'admin.categories.*', 'icon' => 'M3 4h7v7H3z M14 4h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z'],
                 ['label' => 'Battery Brands', 'route' => 'admin.brands.index', 'match' => 'admin.brands.*', 'icon' => 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z M9 12l2 2 4-4'],
+                ['label' => 'Reviews', 'route' => 'admin.reviews.index', 'match' => 'admin.reviews.*', 'icon' => 'm12 2 3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z'],
+            ],
+        ],
+        [
+            'heading' => 'Customers',
+            'items' => [
+                ['label' => 'Customers', 'route' => 'admin.customers.index', 'match' => 'admin.customers.*', 'icon' => 'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-8 8h8a4 4 0 0 1 4 4v2H4v-2a4 4 0 0 1 4-4Z'],
             ],
         ],
         [
@@ -39,6 +55,12 @@
                 ['label' => 'Contact Us', 'href' => route('admin.pages.index', ['tab' => 'contact-us']),
                  'match' => fn () => request()->routeIs('admin.pages.*') && request()->query('tab') === 'contact-us',
                  'icon' => 'M4 4h16v12H5l-1 4z'],
+            ],
+        ],
+        [
+            'heading' => 'Settings',
+            'items' => [
+                ['label' => 'Delivery Pincodes', 'route' => 'admin.pincodes.index', 'match' => 'admin.pincodes.*', 'icon' => 'M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z'],
             ],
         ],
     ];
