@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Bike battery illustration">
+  <defs>
+    <linearGradient id="bgGradBike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="bodyGradBike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="topGradBike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="labelGradBike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <radialGradient id="postGradBike" cx="0.5" cy="0.35" r="0.6">
+      <stop offset="0%" stop-color="#f3f4f6"/>
+      <stop offset="100%" stop-color="#9ca3af"/>
+    </radialGradient>
+    <filter id="shadowBike" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dy="6"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bgGradBike)"/>
+
+  <!-- Soft ground shadow -->
+  <ellipse cx="200" cy="332" rx="100" ry="9" fill="#0f172a" opacity="0.18"/>
+
+  <g filter="url(#shadowBike)">
+    <!-- Small terminal posts -->
+    <rect x="135" y="118" width="40" height="14" rx="2" fill="url(#topGradBike)"/>
+    <rect x="225" y="118" width="40" height="14" rx="2" fill="url(#topGradBike)"/>
+
+    <circle cx="155" cy="118" r="11" fill="url(#postGradBike)"/>
+    <circle cx="155" cy="118" r="7" fill="#dc2626"/>
+    <text x="155" y="122" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="700">+</text>
+
+    <circle cx="245" cy="118" r="11" fill="url(#postGradBike)"/>
+    <circle cx="245" cy="118" r="7" fill="#111827"/>
+    <text x="245" y="123" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="13" font-weight="700">−</text>
+
+    <!-- Battery top -->
+    <rect x="120" y="130" width="160" height="22" rx="4" fill="url(#topGradBike)"/>
+
+    <!-- Compact battery body (taller, narrower than car) -->
+    <rect x="120" y="148" width="160" height="170" rx="8" fill="url(#bodyGradBike)"/>
+
+    <!-- Front label -->
+    <rect x="138" y="178" width="124" height="120" rx="5" fill="url(#labelGradBike)" stroke="#cbd5e1" stroke-width="1"/>
+
+    <!-- Brand strip -->
+    <rect x="138" y="178" width="124" height="26" rx="5" fill="#f59e0b"/>
+    <rect x="138" y="196" width="124" height="8" fill="#f59e0b"/>
+    <text x="200" y="197" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="11" font-weight="800" letter-spacing="1.5">MOTO CELL</text>
+
+    <!-- Specs -->
+    <text x="200" y="240" text-anchor="middle" fill="#0f172a" font-family="Arial, sans-serif" font-size="26" font-weight="800">12V</text>
+    <text x="200" y="262" text-anchor="middle" fill="#475569" font-family="Arial, sans-serif" font-size="11" font-weight="700">SEALED · MF</text>
+    <text x="200" y="285" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="9">For 2-wheelers</text>
+  </g>
+</svg>
