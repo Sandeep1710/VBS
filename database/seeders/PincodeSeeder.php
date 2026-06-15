@@ -6,7 +6,7 @@ use App\Models\Pincode;
 use Illuminate\Database\Seeder;
 
 /**
- * Mumbai-only pincode coverage.
+ * Mumbai metro pincode coverage.
  *
  * Zones:
  *  - Mumbai City + Suburbs (400001-400104): Free delivery, same/next day, COD enabled
@@ -119,15 +119,15 @@ class PincodeSeeder extends Seeder
 
         $naviMumbai = [
             ['400614', 'Vashi'],
-            ['400701', 'Airoli'],
-            ['400702', 'Rabale'],
-            ['400703', 'Mahape'],
-            ['400705', 'Belapur'],
+            ['400701', 'Rabale'],
+            ['400702', 'Airoli'],
+            ['400703', 'Ghansoli'],
+            ['400705', 'CBD Belapur'],
             ['400706', 'Nerul'],
             ['400707', 'Sanpada'],
             ['400708', 'Kalamboli'],
             ['400709', 'Kopar Khairane'],
-            ['400710', 'Sanpada'],
+            ['400710', 'Turbhe'],
         ];
 
         // Mumbai City + Suburbs: Free delivery, 1 day

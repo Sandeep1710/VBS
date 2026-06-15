@@ -43,24 +43,24 @@ HTML;
 <div style="display:grid;gap:1rem;grid-template-columns:1fr 1fr;margin:1.5rem 0;">
   <div>
     <h3>📞 Phone</h3>
-    <p><strong>022-XXXX-XXXX</strong><br>
+    <p><strong>+91 9920971479</strong><br>
     <small>Monday – Saturday, 9am to 8pm</small></p>
   </div>
   <div>
     <h3>💬 WhatsApp</h3>
-    <p><strong>+91 9XXXX XXXXX</strong><br>
+    <p><strong>+91 9920971479</strong><br>
     <small>Quick replies on quotes and order status</small></p>
   </div>
   <div>
     <h3>📧 Email</h3>
-    <p><a href="mailto:support@yourdomain.com">support@yourdomain.com</a><br>
+    <p><a href="mailto:vbs622026@gmail.com">vbs622026@gmail.com</a><br>
     <small>Replies within 4 working hours</small></p>
   </div>
   <div>
     <h3>📍 Address</h3>
-    <p>[Your Shop Name]<br>
-    [Building / Lane], [Area]<br>
-    Mumbai 400XXX</p>
+    <p>Vehicle Battery Store<br>
+    R-30, MIDC Area Rd, MIDC Industrial Area<br>
+    Rabale, Navi Mumbai, Maharashtra 400701</p>
   </div>
 </div>
 

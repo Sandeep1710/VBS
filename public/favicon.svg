@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Red rounded background -->
+  <rect width="32" height="32" rx="7" fill="#dc2626"/>
+
+  <!-- Battery body with terminals (mimics the site logo) -->
+  <path fill="#ffffff" d="M11 6h10a1 1 0 0 1 1 1v1.5h1.5a2 2 0 0 1 2 2v12.5a2 2 0 0 1-2 2H8.5a2 2 0 0 1-2-2V10.5a2 2 0 0 1 2-2H10V7a1 1 0 0 1 1-1Z"/>
+
+  <!-- Charge bars (red on white battery) -->
+  <rect x="10.5" y="13" width="3" height="3" fill="#dc2626"/>
+  <rect x="18.5" y="13" width="3" height="3" fill="#dc2626"/>
+  <rect x="10.5" y="18" width="11" height="2" fill="#dc2626"/>
+</svg>

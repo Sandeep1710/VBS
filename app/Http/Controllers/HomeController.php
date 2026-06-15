@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BatteryBrand;
 use App\Models\Banner;
+use App\Models\Category;
 use App\Models\CmsPage;
 use App\Models\Faq;
 use App\Models\Product;
@@ -16,15 +17,17 @@ class HomeController extends Controller
     public function index(): View
     {
         $banners = Banner::active()->where('position', 'home_hero')->orderBy('sort_order')->get();
+        $categories = Category::where('is_active', true)->orderBy('sort_order')->limit(6)->get();
         $featuredBrands = BatteryBrand::where('is_featured', true)->where('is_active', true)->orderBy('sort_order')->get();
-        $featuredProducts = Product::active()->featured()->with('batteryBrand', 'primaryImage')->limit(8)->get();
-        $bestSellers = Product::active()->orderByDesc('sales_count')->orderByDesc('rating_avg')->with('batteryBrand', 'primaryImage')->limit(4)->get();
+        $featuredProducts = Product::active()->featured()->with('batteryBrand', 'primaryImage', 'category')->limit(8)->get();
+        $bestSellers = Product::active()->orderByDesc('sales_count')->orderByDesc('rating_avg')->with('batteryBrand', 'primaryImage', 'category')->limit(4)->get();
+        $heroProduct = Product::active()->featured()->with('batteryBrand', 'primaryImage', 'category')->first();
         $testimonials = Testimonial::where('is_active', true)->orderBy('sort_order')->limit(6)->get();
         $faqs = Faq::where('is_active', true)->orderBy('sort_order')->limit(6)->get();
 
         return view('home', compact(
-            'banners', 'featuredBrands', 'featuredProducts',
-            'bestSellers', 'testimonials', 'faqs'
+            'banners', 'categories', 'featuredBrands', 'featuredProducts',
+            'bestSellers', 'heroProduct', 'testimonials', 'faqs'
         ));
     }
 

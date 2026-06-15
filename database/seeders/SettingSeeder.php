@@ -11,11 +11,11 @@ class SettingSeeder extends Seeder
     {
         $settings = [
             ['general', 'site_name', 'Vehicle Battery Store', 'string', 'Site Name', true],
-            ['general', 'site_tagline', "Mumbai's #1 battery delivery service · Same-day delivery", 'string', 'Site Tagline', true],
-            ['general', 'support_email', 'support@yourdomain.com', 'string', 'Support Email', true],
-            ['general', 'support_phone', '022-XXXX-XXXX', 'string', 'Support Phone', true],
-            ['general', 'whatsapp_number', '+919XXXXXXXXX', 'string', 'WhatsApp Number', true],
-            ['general', 'address', '[Your Shop Address], Mumbai, Maharashtra 400XXX', 'text', 'Office Address', true],
+            ['general', 'site_tagline', "Navi Mumbai's #1 battery delivery service · Same-day delivery", 'string', 'Site Tagline', true],
+            ['general', 'support_email', 'vbs622026@gmail.com', 'string', 'Support Email', true],
+            ['general', 'support_phone', '+91 9920971479', 'string', 'Support Phone', true],
+            ['general', 'whatsapp_number', '+919920971479', 'string', 'WhatsApp Number', true],
+            ['general', 'address', 'R-30, MIDC Area Rd, MIDC Industrial Area, Rabale, Navi Mumbai, Maharashtra 400701', 'text', 'Office Address', true],
 
             ['order', 'default_tax_percent', '18', 'integer', 'Default GST % (CGST 9 + SGST 9)'],
             ['order', 'default_delivery_charge', '99', 'integer', 'Default Delivery Charge (₹) for outside-Mumbai pincodes'],
@@ -28,9 +28,11 @@ class SettingSeeder extends Seeder
             ['seo', 'default_meta_title', 'Buy Car & Bike Batteries Online in Mumbai — Same-day Delivery', 'string', 'Default Meta Title'],
             ['seo', 'default_meta_description', "Mumbai's #1 battery delivery service. Buy genuine Exide, Amaron, SF Sonic batteries with same-day delivery, free installation and old battery exchange across Mumbai, Thane and Navi Mumbai.", 'text', 'Default Meta Description'],
 
+            // Lead-gen mode: only COD enabled. Admin follows up manually.
+            // Switch upi/card to '1' after Razorpay KYC approval to accept online payments.
             ['payment', 'cod_enabled', '1', 'boolean', 'Enable COD'],
-            ['payment', 'upi_enabled', '1', 'boolean', 'Enable UPI'],
-            ['payment', 'card_enabled', '1', 'boolean', 'Enable Card'],
+            ['payment', 'upi_enabled', '0', 'boolean', 'Enable UPI (requires Razorpay)'],
+            ['payment', 'card_enabled', '0', 'boolean', 'Enable Card (requires Razorpay)'],
         ];
 
         foreach ($settings as $row) {

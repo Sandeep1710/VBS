@@ -12,6 +12,11 @@
 <title>{{ $title ?? ($pageTitle ?? $defaultMetaTitle) }}</title>
 <meta name="description" content="{{ $metaDescription ?? $defaultMetaDescription }}">
 
+{{-- Favicons --}}
+<link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+<link rel="apple-touch-icon" href="{{ asset('favicon.svg') }}">
+
 @isset($canonical)
     <link rel="canonical" href="{{ $canonical }}">
 @endisset

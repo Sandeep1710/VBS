@@ -39,20 +39,22 @@
                 <x-input-error for="address_id" />
             </x-card>
 
-            {{-- Payment method --}}
-            <x-card title="Payment method">
+            {{-- Payment method (driven by admin settings) --}}
+            <x-card title="Payment & confirmation">
+                @php
+                    $methods = collect([
+                        ['cod', 'Cash on Delivery', 'Pay when your battery is delivered to your doorstep.', \App\Models\Setting::get('cod_enabled', false, 'payment')],
+                        ['upi', 'UPI', 'Pay via Google Pay, PhonePe, Paytm, etc.', \App\Models\Setting::get('upi_enabled', false, 'payment')],
+                        ['card', 'Credit / Debit Card', 'Visa, Mastercard, RuPay accepted.', \App\Models\Setting::get('card_enabled', false, 'payment')],
+                    ])->filter(fn ($m) => (bool) $m[3])->values();
+                    $defaultMethod = $methods->first()[0] ?? 'cod';
+                @endphp
+
                 <div class="space-y-3">
-                    @php
-                        $methods = [
-                            ['cod', 'Cash on Delivery', 'Pay when your battery is delivered.'],
-                            ['upi', 'UPI', 'Pay via Google Pay, PhonePe, Paytm, etc.'],
-                            ['card', 'Credit / Debit Card', 'Visa, Mastercard, RuPay accepted.'],
-                        ];
-                    @endphp
-                    @foreach($methods as [$key, $label, $desc])
-                        <label class="block cursor-pointer rounded-lg border p-4 transition-colors {{ old('payment_method', 'cod') === $key ? 'border-brand-500 bg-brand-50/40 ring-2 ring-brand-500/20' : 'border-ink-200 hover:bg-ink-50' }}">
+                    @foreach($methods as [$key, $label, $desc, $_enabled])
+                        <label class="block cursor-pointer rounded-lg border p-4 transition-colors {{ old('payment_method', $defaultMethod) === $key ? 'border-brand-500 bg-brand-50/40 ring-2 ring-brand-500/20' : 'border-ink-200 hover:bg-ink-50' }}">
                             <div class="flex items-start gap-3">
-                                <input type="radio" name="payment_method" value="{{ $key }}" @checked(old('payment_method', 'cod') === $key) class="mt-1 h-4 w-4 border-ink-300 text-brand-600 focus:ring-brand-500" required>
+                                <input type="radio" name="payment_method" value="{{ $key }}" @checked(old('payment_method', $defaultMethod) === $key) class="mt-1 h-4 w-4 border-ink-300 text-brand-600 focus:ring-brand-500" required>
                                 <div>
                                     <p class="text-sm font-semibold text-ink-900">{{ $label }}</p>
                                     <p class="text-xs text-ink-600">{{ $desc }}</p>
@@ -62,7 +64,11 @@
                     @endforeach
                 </div>
                 <x-input-error for="payment_method" />
-                <p class="mt-3 rounded-lg bg-amber-50 p-3 text-xs text-amber-800 ring-1 ring-amber-200">UPI &amp; Card payment integrations are scheduled. For now, all online orders are received and confirmed offline.</p>
+
+                <div class="mt-3 rounded-lg bg-blue-50 p-3 text-xs text-blue-800 ring-1 ring-blue-200">
+                    <p class="font-semibold">📞 What happens next?</p>
+                    <p class="mt-1">After you place the order, our team will call you within 4 hours at <strong>{{ \App\Models\Setting::get('support_phone', '+91 9920971479') }}</strong> to confirm the battery model, delivery slot, and final amount.</p>
+                </div>
             </x-card>
 
             <x-card title="Order notes (optional)">
@@ -104,8 +110,8 @@
                     <div class="flex justify-between border-t border-ink-200/60 pt-2 text-base"><dt class="font-semibold text-ink-900">Total</dt><dd class="font-bold text-ink-900">₹{{ number_format((float) $cart->total, 2) }}</dd></div>
                 </dl>
 
-                <button type="submit" class="btn btn-primary mt-5 w-full">Place order</button>
-                <p class="mt-2 text-center text-xs text-ink-500">By placing an order you accept our <a href="{{ url('/cms/terms-and-conditions') }}" class="text-brand-600 hover:underline">Terms</a>.</p>
+                <button type="submit" class="btn btn-primary mt-5 w-full">Confirm Order — We'll Call You</button>
+                <p class="mt-2 text-center text-xs text-ink-500">By confirming you accept our <a href="{{ url('/cms/terms-and-conditions') }}" class="text-brand-600 hover:underline">Terms</a>.</p>
             </x-card>
         </aside>
     </form>

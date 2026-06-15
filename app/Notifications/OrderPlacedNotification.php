@@ -44,17 +44,18 @@ class OrderPlacedNotification extends Notification implements ShouldQueue
     {
         $order = $this->order->loadMissing('items');
         $itemsCount = $order->items->sum('quantity');
+        $supportPhone = \App\Models\Setting::get('support_phone', '+91 9920971479');
 
         $message = (new MailMessage)
-            ->subject('Order confirmation – ' . $order->order_number)
+            ->subject('Order received – ' . $order->order_number)
             ->greeting('Hi ' . $order->billing_name . ',')
-            ->line('Thanks for your order! We have received it and will start processing it shortly.')
+            ->line('Thanks for choosing us! We have received your order and our team will call you within **4 working hours** at ' . $order->billing_phone . ' to confirm the battery model and schedule delivery.')
             ->line('**Order:** ' . $order->order_number)
             ->line('**Items:** ' . $itemsCount . ' battery item(s)')
-            ->line('**Total:** ₹' . number_format((float) $order->total, 2))
-            ->line('**Payment method:** ' . strtoupper($order->payment_method))
+            ->line('**Estimated total:** ₹' . number_format((float) $order->total, 2))
+            ->line('**Payment:** Cash on Delivery')
             ->action('View order', route('account.orders.show', $order))
-            ->line('We will notify you when your order is dispatched.');
+            ->line('Need to reach us first? Call or WhatsApp **' . $supportPhone . '** — Mon to Sat, 9 AM to 8 PM.');
 
         if ($order->exchange_pickup_required) {
             $message->line('Please keep your old battery ready for exchange pickup.');
