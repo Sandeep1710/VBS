@@ -234,5 +234,7 @@
             });
         });
     </script>
+
+    @stack('page-scripts')
 </body>
 </html>

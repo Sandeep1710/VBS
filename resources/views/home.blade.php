@@ -221,12 +221,21 @@
 
     {{-- ============ TRUSTED BRANDS ============ --}}
     @if($featuredBrands->isNotEmpty())
+        @php $brCount = $featuredBrands->count(); @endphp
         <section class="mt-14">
             <div class="text-center">
                 <p class="text-xs font-bold uppercase tracking-widest text-brand-600">Trusted brands</p>
                 <h2 class="mt-2 text-2xl font-extrabold text-ink-900 sm:text-3xl">Shop by battery brand</h2>
             </div>
-            <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            <div @class([
+                'mt-6 grid gap-4',
+                'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6' => $brCount >= 6,
+                'mx-auto max-w-5xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-5' => $brCount === 5,
+                'mx-auto max-w-3xl grid-cols-2 lg:grid-cols-4' => $brCount === 4,
+                'mx-auto max-w-2xl grid-cols-2 sm:grid-cols-3' => $brCount === 3,
+                'mx-auto max-w-md grid-cols-2' => $brCount === 2,
+                'mx-auto max-w-[220px] grid-cols-1' => $brCount === 1,
+            ])>
                 @foreach($featuredBrands as $brand)
                     <a href="#" class="card flex h-20 items-center justify-center p-4 transition-all hover:-translate-y-0.5 hover:shadow-md">
                         <span class="text-center font-display text-base font-bold text-ink-900">{{ $brand->name }}</span>
