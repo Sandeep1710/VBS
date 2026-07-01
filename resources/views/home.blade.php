@@ -1,4 +1,25 @@
 <x-layouts.app>
+    {{-- FAQPage schema (helps Google surface these Q&A in search results) --}}
+    @if($faqs->isNotEmpty())
+        @push('head')
+            @php
+                $faqSchema = [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'FAQPage',
+                    'mainEntity' => $faqs->map(fn ($f) => [
+                        '@type' => 'Question',
+                        'name' => $f->question,
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text' => strip_tags($f->answer),
+                        ],
+                    ])->values()->all(),
+                ];
+            @endphp
+            <script type="application/ld+json">{!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+        @endpush
+    @endif
+
     {{-- ============ HERO (cinematic dark, vape-shop style) ============ --}}
     @if($banners->isNotEmpty())
         @php

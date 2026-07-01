@@ -18,13 +18,18 @@ class SitemapController extends Controller
         $items[] = ['loc' => url('/products'), 'priority' => '0.9', 'changefreq' => 'daily'];
         $items[] = ['loc' => url('/finder'), 'priority' => '0.8', 'changefreq' => 'monthly'];
 
-        foreach (Product::active()->select('slug', 'updated_at')->get() as $product) {
-            $items[] = [
+        foreach (Product::active()->with('primaryImage')->get() as $product) {
+            $entry = [
                 'loc' => route('products.show', $product),
                 'lastmod' => $product->updated_at?->toAtomString(),
                 'priority' => '0.8',
                 'changefreq' => 'weekly',
             ];
+            if ($product->primaryImage?->path) {
+                $entry['image'] = asset('storage/' . $product->primaryImage->path);
+                $entry['image_title'] = $product->name;
+            }
+            $items[] = $entry;
         }
 
         foreach (Category::where('is_active', true)->select('slug', 'updated_at')->get() as $cat) {

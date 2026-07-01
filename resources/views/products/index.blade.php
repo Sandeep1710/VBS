@@ -1,4 +1,37 @@
 <x-layouts.app :title="$seoTitle ?? ($title . ' | Trikuti Battery')" :metaDescription="$seoDescription ?? null">
+    @push('head')
+        @php
+            $crumbs = [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => url('/')],
+            ];
+            if (isset($currentCategory) && $currentCategory) {
+                $crumbs[] = ['@type' => 'ListItem', 'position' => 2, 'name' => 'Batteries', 'item' => route('products.index')];
+                $crumbs[] = ['@type' => 'ListItem', 'position' => 3, 'name' => $currentCategory->name];
+            } elseif (isset($currentBrand) && $currentBrand) {
+                $crumbs[] = ['@type' => 'ListItem', 'position' => 2, 'name' => 'Batteries', 'item' => route('products.index')];
+                $crumbs[] = ['@type' => 'ListItem', 'position' => 3, 'name' => $currentBrand->name];
+            } else {
+                $crumbs[] = ['@type' => 'ListItem', 'position' => 2, 'name' => $title];
+            }
+            $breadcrumbSchema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => $crumbs,
+            ];
+
+            $collectionSchema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'CollectionPage',
+                'name' => $title,
+                'description' => $description ?? $seoDescription ?? null,
+                'url' => url()->current(),
+                'isPartOf' => ['@id' => url('/') . '#website'],
+            ];
+        @endphp
+        <script type="application/ld+json">{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+        <script type="application/ld+json">{!! json_encode(array_filter($collectionSchema, fn ($v) => $v !== null), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    @endpush
+
     <div class="mb-6 flex flex-col gap-4">
         <nav class="text-xs text-ink-500">
             <a href="{{ url('/') }}" class="hover:text-brand-600">Home</a>

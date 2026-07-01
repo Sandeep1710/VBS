@@ -27,6 +27,11 @@ class SettingSeeder extends Seeder
 
             ['seo', 'default_meta_title', 'Buy Car & Bike Batteries Online in Mumbai — Same-day Delivery', 'string', 'Default Meta Title'],
             ['seo', 'default_meta_description', "Mumbai's #1 battery delivery service. Buy genuine Exide, Amaron, SF Sonic batteries with same-day delivery, free installation and old battery exchange across Mumbai, Thane and Navi Mumbai.", 'text', 'Default Meta Description'],
+            ['seo', 'google_analytics_id', '', 'string', 'Google Analytics 4 ID (G-XXXXXXX)'],
+            ['seo', 'google_search_console', '', 'string', 'Google Search Console verification token (content of google-site-verification meta)'],
+            ['seo', 'google_tag_manager_id', '', 'string', 'Google Tag Manager container ID (GTM-XXXXXXX)'],
+            ['seo', 'facebook_pixel_id', '', 'string', 'Facebook / Meta Pixel ID'],
+            ['seo', 'bing_verification', '', 'string', 'Bing Webmaster verification token'],
 
             // Lead-gen mode: only COD enabled. Admin follows up manually.
             // Switch upi/card to '1' after Razorpay KYC approval to accept online payments.

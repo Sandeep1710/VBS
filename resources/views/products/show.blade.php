@@ -1,9 +1,11 @@
 <x-layouts.app
     :title="$product->name . ' | Trikuti Battery'"
     :metaDescription="$product->short_description"
+    :canonical="route('products.show', $product)"
+    :ogType="'product'"
+    :ogImage="$product->primaryImage?->path ? asset('storage/' . $product->primaryImage->path) : null"
 >
     @push('head')
-        <link rel="canonical" href="{{ route('products.show', $product) }}">
         @php
             $schema = [
                 '@context' => 'https://schema.org/',
@@ -30,8 +32,23 @@
                     'reviewCount' => (int) $product->rating_count,
                 ];
             }
+
+            $breadcrumbs = [
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => url('/')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => 'Batteries', 'item' => route('products.index')],
+            ];
+            if ($product->category) {
+                $breadcrumbs[] = ['@type' => 'ListItem', 'position' => 3, 'name' => $product->category->name, 'item' => route('categories.show', $product->category)];
+            }
+            $breadcrumbs[] = ['@type' => 'ListItem', 'position' => count($breadcrumbs) + 1, 'name' => $product->name];
+            $breadcrumbSchema = [
+                '@context' => 'https://schema.org',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => $breadcrumbs,
+            ];
         @endphp
         <script type="application/ld+json">{!! json_encode($schema, JSON_UNESCAPED_SLASHES) !!}</script>
+        <script type="application/ld+json">{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES) !!}</script>
     @endpush
 
     <nav class="mb-4 text-xs text-ink-500">
