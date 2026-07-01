@@ -61,7 +61,7 @@ class OrderPlacedNotification extends Notification implements ShouldQueue
             $message->line('Please keep your old battery ready for exchange pickup.');
         }
 
-        return $message->salutation('— Vehicle Battery Store');
+        return $message->salutation('— Trikuti Battery');
     }
 
     public function toArray(object $notifiable): array

@@ -10,7 +10,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            ['general', 'site_name', 'Vehicle Battery Store', 'string', 'Site Name', true],
+            ['general', 'site_name', 'Trikuti Battery', 'string', 'Site Name', true],
             ['general', 'site_tagline', "Navi Mumbai's #1 battery delivery service · Same-day delivery", 'string', 'Site Tagline', true],
             ['general', 'support_email', 'vbs622026@gmail.com', 'string', 'Support Email', true],
             ['general', 'support_phone', '+91 9920971479', 'string', 'Support Phone', true],

@@ -1,4 +1,4 @@
-<x-layouts.app :title="$seoTitle ?? ($title . ' | Vehicle Battery Store')" :metaDescription="$seoDescription ?? null">
+<x-layouts.app :title="$seoTitle ?? ($title . ' | Trikuti Battery')" :metaDescription="$seoDescription ?? null">
     <div class="mb-6 flex flex-col gap-4">
         <nav class="text-xs text-ink-500">
             <a href="{{ url('/') }}" class="hover:text-brand-600">Home</a>

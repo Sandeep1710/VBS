@@ -47,7 +47,7 @@ class OrderDispatchedNotification extends Notification implements ShouldQueue
             ->line('Good news — your order **' . $this->order->order_number . '** has been dispatched.')
             ->line('We\'ll let you know once it\'s delivered. Please keep your old battery ready if you opted for exchange.')
             ->action('Track order', route('account.orders.show', $this->order))
-            ->line('Thanks for shopping with Vehicle Battery Store.');
+            ->line('Thanks for shopping with Trikuti Battery.');
     }
 
     public function toArray(object $notifiable): array

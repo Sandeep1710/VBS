@@ -1,5 +1,5 @@
 <x-layouts.app
-    :title="$product->name . ' | Vehicle Battery Store'"
+    :title="$product->name . ' | Trikuti Battery'"
     :metaDescription="$product->short_description"
 >
     @push('head')

@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Checkout | Vehicle Battery Store'">
+<x-layouts.app :title="'Checkout | Trikuti Battery'">
     <h1 class="text-2xl font-bold text-ink-900 sm:text-3xl">Checkout</h1>
     <p class="mt-1 text-sm text-ink-600">Review your order and place it.</p>
 

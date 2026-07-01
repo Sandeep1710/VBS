@@ -14,5 +14,5 @@
             <path d="M7 4h10a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a1 1 0 0 1 1-1Zm1 2v0Zm-1 6h3v-2H7v2Zm7 0h3v-2h-3v2Z"/>
         </svg>
     </span>
-    <span>VBS</span>
+    <span>Trikuti Battery</span>
 </a>

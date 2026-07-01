@@ -1,7 +1,7 @@
 <x-layouts.admin
     :title="'Dashboard'"
     :header="'Welcome ' . (auth()->user()->name ?? 'Admin')"
-    :subheader="'Vehicle Battery Store admin'"
+    :subheader="'Trikuti Battery admin'"
 >
     {{-- Revenue strip --}}
     <div class="grid gap-4 sm:grid-cols-3">

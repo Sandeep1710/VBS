@@ -38,6 +38,6 @@ class OtpCodeNotification extends Notification
             ->line("Use this code to {$purposeLabel}:")
             ->line('**' . $this->code . '**')
             ->line('This code will expire in 10 minutes. Do not share it with anyone.')
-            ->salutation('— Vehicle Battery Store');
+            ->salutation('— Trikuti Battery');
     }
 }

@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Order received | Vehicle Battery Store'">
+<x-layouts.app :title="'Order received | Trikuti Battery'">
     <div class="mx-auto max-w-2xl">
         <x-card padding="p-8">
             <div class="text-center">

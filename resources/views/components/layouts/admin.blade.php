@@ -112,7 +112,7 @@
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M7 4h10a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a1 1 0 0 1 1-1Zm1 2v0Zm-1 6h3v-2H7v2Zm7 0h3v-2h-3v2Z"/></svg>
                 </span>
                 <div class="min-w-0">
-                    <p class="truncate text-sm font-bold leading-none text-white">{{ \App\Models\Setting::get('site_name', 'Vehicle Battery Store') }}</p>
+                    <p class="truncate text-sm font-bold leading-none text-white">{{ \App\Models\Setting::get('site_name', 'Trikuti Battery') }}</p>
                     <p class="mt-1 text-[10px] font-medium uppercase tracking-wider text-ink-400">Admin panel</p>
                 </div>
             </a>

@@ -34,6 +34,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect()->route('account.dashboard')
-            ->with('success', 'Welcome to Vehicle Battery Store, ' . $user->name . '!');
+            ->with('success', 'Welcome to Trikuti Battery, ' . $user->name . '!');
     }
 }

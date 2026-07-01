@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Your Cart | Vehicle Battery Store'">
+<x-layouts.app :title="'Your Cart | Trikuti Battery'">
     <h1 class="text-2xl font-bold text-ink-900 sm:text-3xl">Your cart</h1>
     <p class="mt-1 text-sm text-ink-600">{{ $itemsCount }} item(s)</p>
 

@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Find My Battery | Vehicle Battery Store'">
+<x-layouts.app :title="'Find My Battery | Trikuti Battery'">
     <div class="mx-auto max-w-3xl">
         <div class="text-center">
             <span class="badge bg-brand-100 text-brand-700">Battery finder</span>

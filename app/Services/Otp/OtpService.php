@@ -84,7 +84,7 @@ class OtpService
 
     private function dispatch(OtpCode $otp, string $plainCode): void
     {
-        $message = "Your Vehicle Battery Store code is {$plainCode}. Valid for "
+        $message = "Your Trikuti Battery code is {$plainCode}. Valid for "
             . self::TTL_MINUTES . " minutes. Don't share this code.";
 
         if ($otp->channel === 'email') {

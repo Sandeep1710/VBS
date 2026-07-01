@@ -43,7 +43,7 @@
         <a href="{{ route('otp.request') }}" class="btn btn-outline mt-4 w-full">Sign in with OTP</a>
 
         <p class="mt-6 text-center text-sm text-ink-600">
-            New to Vehicle Battery Store?
+            New to Trikuti Battery?
             <a href="{{ route('register') }}" class="font-semibold text-brand-600 hover:text-brand-700">Create an account</a>
         </p>
     </div>

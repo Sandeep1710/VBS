@@ -23,7 +23,7 @@
 <body>
     <div class="header">
         <div>
-            <div class="brand">{{ \App\Models\Setting::get('site_name', 'Vehicle Battery Store') }}</div>
+            <div class="brand">{{ \App\Models\Setting::get('site_name', 'Trikuti Battery') }}</div>
             <p style="font-size: 12px; color: #64748b; margin: 4px 0;">{{ \App\Models\Setting::get('site_tagline', '') }}</p>
         </div>
         <div style="text-align: right;">

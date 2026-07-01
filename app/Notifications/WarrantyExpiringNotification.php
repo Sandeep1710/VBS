@@ -44,7 +44,7 @@ class WarrantyExpiringNotification extends Notification implements ShouldQueue
             ->line($endsAt ? "Warranty ends on **{$endsAt}**." : '')
             ->line('If you noticed any issues, raise a warranty claim before the period ends.')
             ->action('View order', route('account.orders.show', $this->item->order))
-            ->line('Thank you for shopping with Vehicle Battery Store.');
+            ->line('Thank you for shopping with Trikuti Battery.');
     }
 
     public function toArray(object $notifiable): array

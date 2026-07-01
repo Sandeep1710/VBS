@@ -13,7 +13,7 @@ class CmsContentSeeder extends Seeder
     {
         $aboutContent = <<<HTML
 <h2>Mumbai's trusted battery delivery service</h2>
-<p>Vehicle Battery Store delivers genuine automotive batteries to your doorstep across Mumbai, Thane and Navi Mumbai — with free same-day or next-day delivery for most pincodes.</p>
+<p>Trikuti Battery delivers genuine automotive batteries to your doorstep across Mumbai, Thane and Navi Mumbai — with free same-day or next-day delivery for most pincodes.</p>
 
 <h3>Why choose us</h3>
 <ul>
@@ -58,7 +58,7 @@ HTML;
   </div>
   <div>
     <h3>📍 Address</h3>
-    <p>Vehicle Battery Store<br>
+    <p>Trikuti Battery<br>
     R-30, MIDC Area Rd, MIDC Industrial Area<br>
     Rabale, Navi Mumbai, Maharashtra 400701</p>
   </div>

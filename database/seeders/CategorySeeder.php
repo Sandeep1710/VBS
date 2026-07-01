@@ -24,7 +24,7 @@ class CategorySeeder extends Seeder
                     'is_featured' => $featured,
                     'is_active' => true,
                     'sort_order' => $i + 1,
-                    'meta_title' => "$name - Buy Online | Vehicle Battery Store",
+                    'meta_title' => "$name - Buy Online | Trikuti Battery",
                     'meta_description' => "Shop $name online with warranty and old battery exchange.",
                 ],
             );
