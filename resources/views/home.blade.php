@@ -193,7 +193,7 @@
     <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
         @foreach([
             ['label' => 'Max exchange off', 'value' => '₹800', 'symbol' => '₹'],
-            ['label' => 'Up to warranty', 'value' => '60 mo', 'icon' => 'M9 12l2 2 4-4M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
+            ['label' => 'Up to warranty', 'value' => '48 mo', 'icon' => 'M9 12l2 2 4-4M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
             ['label' => 'Doorstep delivery', 'value' => 'Free', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
             ['label' => 'Genuine products', 'value' => '100%', 'icon' => 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z'],
         ] as $stat)
@@ -276,7 +276,7 @@
             @foreach([
                 ['title' => 'Genuine batteries', 'desc' => 'Direct from authorised dealers, sealed with manufacturer warranty.', 'icon' => 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z M9 12l2 2 4-4'],
                 ['title' => 'Same-day delivery', 'desc' => 'Order before 2 PM in Mumbai — delivered the same evening.', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
-                ['title' => 'Warranty support', 'desc' => 'Up to 60 months. We handle warranty claims for you.', 'icon' => 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
+                ['title' => 'Warranty support', 'desc' => 'Full manufacturer warranty on every battery — we handle claims for you.', 'icon' => 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
                 ['title' => 'Battery exchange', 'desc' => 'Save up to ₹800 instantly. We pick up your old battery.', 'icon' => 'M3 12a9 9 0 1 0 3-6.7M3 4v5h5'],
             ] as $card)
                 <div class="card group p-5 transition-transform hover:-translate-y-1">

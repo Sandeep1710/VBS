@@ -21,7 +21,7 @@ class CmsContentSeeder extends Seeder
 <li><strong>Same-day delivery in Mumbai</strong> — order before 2pm for same-day delivery to all Mumbai City and Suburbs pincodes</li>
 <li><strong>Free installation</strong> — our technician installs the battery and takes your old battery away</li>
 <li><strong>Old battery exchange</strong> — get up to ₹800 off when you exchange your old battery</li>
-<li><strong>Full manufacturer warranty</strong> — every battery comes with the brand's official warranty (24-60 months)</li>
+<li><strong>Full manufacturer warranty</strong> — every battery comes with the brand's official warranty (24-48 months)</li>
 </ul>
 
 <h3>Service area</h3>
@@ -33,7 +33,7 @@ class CmsContentSeeder extends Seeder
 </ul>
 
 <h3>Payment options</h3>
-<p>Pay online via UPI, credit/debit card, or net banking. Cash on Delivery available for orders up to ₹20,000.</p>
+<p>Cash on Delivery is our primary option — pay when the battery is delivered to your doorstep. UPI (Google Pay / PhonePe / Paytm) accepted at delivery too.</p>
 HTML;
 
         $contactContent = <<<HTML
@@ -100,8 +100,8 @@ HTML;
             ['Order', 'Can I cancel my order?', 'Yes, you can cancel from your account any time before the battery is dispatched.'],
             ['Battery', 'How does old battery exchange work?', 'Add the exchange option when adding a battery to cart. Hand over your old battery to the technician during installation and get up to ₹800 off instantly.'],
             ['Battery', 'How is the warranty period calculated?', 'Warranty starts from the date of delivery and is provided directly by the battery manufacturer (Exide, Amaron, etc.).'],
-            ['Payment', 'What payment methods do you accept?', 'UPI, credit/debit cards, net banking, and Cash on Delivery (COD) up to ₹20,000.'],
-            ['Payment', 'Is COD available across Mumbai?', 'Yes, COD is available for all serviceable pincodes including Mumbai, Thane and Navi Mumbai for orders below ₹20,000.'],
+            ['Payment', 'What payment methods do you accept?', 'Cash on Delivery (COD) and UPI (Google Pay / PhonePe / Paytm) at the time of delivery. Our team confirms the final amount over a call before dispatch.'],
+            ['Payment', 'Is COD available across Mumbai?', 'Yes, COD is available for all serviceable pincodes including Mumbai, Thane and Navi Mumbai.'],
         ];
 
         foreach ($faqs as $i => [$cat, $q, $a]) {
@@ -112,11 +112,16 @@ HTML;
         }
 
         $testimonials = [
-            ['Rahul Sharma', 'Software Engineer', 'Andheri West', 5, 'Ordered at 11am, battery installed at my doorstep by 3pm. Couldn\'t believe how fast it was. Genuine Exide product, perfect service.'],
-            ['Priya Mehta', 'Doctor', 'Bandra', 5, 'Old battery pickup saved me a trip to the scrap dealer. Got ₹700 off instantly. Highly recommended for anyone in Mumbai.'],
-            ['Aman Verma', 'Business Owner', 'Powai', 4, 'Better price than the local Amaron dealer and full warranty card with proper bill. Will buy again.'],
-            ['Sneha Reddy', 'Teacher', 'Thane West', 5, 'Was hesitant about ordering a battery online but the experience was smooth. Delivered next day, technician was professional.'],
+            ['Rahul Sharma', 'Software Engineer', 'Rabale', 5, 'Ordered at 11am, battery installed at my doorstep by 3pm. Couldn\'t believe how fast it was. Genuine Exide product, perfect service.'],
+            ['Rakesh Mehta', 'Doctor', 'Airoli', 5, 'Old battery pickup saved me a trip to the scrap dealer. Got ₹700 off instantly. Highly recommended for anyone in Navi Mumbai.'],
+            ['Aman Verma', 'Business Owner', 'Vashi', 4, 'Better price than the local Amaron dealer and full warranty card with proper bill. Will buy again.'],
+            ['Ravi Reddy', 'Teacher', 'Thane', 5, 'Was hesitant about ordering a battery online but the experience was smooth. Delivered next day, technician was professional.'],
+            ['Vikas Deshpande', 'Accountant', 'Mulund', 5, 'Same-day delivery worked exactly as promised. The team called before arriving and installation took under 15 minutes.'],
+            ['Sagar Patil', 'HR Manager', 'Bhandup', 5, 'Great experience — pricing was transparent, invoice was clean, and the warranty card was activated on the spot.'],
         ];
+
+        // Remove any testimonials that aren't in the canonical list above (cleans up stale rows)
+        Testimonial::whereNotIn('name', collect($testimonials)->pluck(0))->delete();
 
         foreach ($testimonials as $i => [$name, $designation, $city, $rating, $comment]) {
             Testimonial::updateOrCreate(

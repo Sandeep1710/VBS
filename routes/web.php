@@ -48,16 +48,29 @@ Route::prefix('cart')->name('cart.')->group(function () {
     Route::delete('/coupon', [CartController::class, 'removeCoupon'])->name('coupon.remove');
 });
 
-// Checkout (verified email required so we can confirm the order)
+// LEAD-GEN MODE: checkout is open to guests (no login required).
+// The old auth-required version is kept below (commented) — restore it when re-enabling full e-commerce.
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::get('/checkout/success/{order:order_number}', [CheckoutController::class, 'success'])->name('checkout.success');
+
+// Payment (post-checkout, before success — non-COD only). Still requires auth.
+Route::middleware(['auth', 'customer', 'verified'])->group(function () {
+    Route::get('/payment/{order:order_number}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{order:order_number}/callback', [PaymentController::class, 'callback'])->name('payment.callback');
+});
+
+/*
+// Original auth-required checkout — restore this block and delete the guest routes above to re-enable customer accounts.
 Route::middleware(['auth', 'customer', 'verified'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     Route::get('/checkout/success/{order:order_number}', [CheckoutController::class, 'success'])->name('checkout.success');
 
-    // Payment (post-checkout, before success — non-COD only)
     Route::get('/payment/{order:order_number}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/{order:order_number}/callback', [PaymentController::class, 'callback'])->name('payment.callback');
 });
+*/
 
 // Razorpay webhook (no auth, signed via webhook secret)
 Route::post('/webhooks/razorpay', [PaymentController::class, 'webhook'])->name('webhooks.razorpay');

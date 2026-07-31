@@ -49,7 +49,7 @@ class ProductSeeder extends Seeder
                 'warranty_months' => 60,
                 'price' => 6800,
                 'offer_price' => 5799,
-                'short_description' => 'Long-life maintenance-free car battery from Amaron with 60-month warranty.',
+                'short_description' => 'Long-life maintenance-free car battery from Amaron with 48-month warranty.',
                 'exchange_available' => true,
                 'exchange_discount' => 700,
                 'stock_quantity' => 35,

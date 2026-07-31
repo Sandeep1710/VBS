@@ -117,12 +117,18 @@
                     </dl>
 
                     <div class="mt-5">
+                        {{-- LEAD-GEN MODE: checkout is open to guests, no login required.
+                             Original @auth/@else block is preserved below (commented). --}}
+                        <a href="{{ route('checkout.index') }}" class="btn btn-primary w-full">Get a Callback</a>
+                        <p class="mt-2 text-center text-xs text-ink-500">Our team will call to confirm details.</p>
+                        {{--
                         @auth
                             <a href="{{ route('checkout.index') }}" class="btn btn-primary w-full">Proceed to checkout</a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary w-full">Sign in to checkout</a>
                             <p class="mt-2 text-center text-xs text-ink-500">Your cart will be saved.</p>
                         @endauth
+                        --}}
                     </div>
                 </x-card>
 
