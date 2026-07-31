@@ -40,12 +40,12 @@ class SecurityHeaders
     {
         $directives = [
             "default-src 'self'",
-            "style-src 'self' 'unsafe-inline' https://fonts.bunny.net https://checkout.razorpay.com",
-            "script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://js.stripe.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.bunny.net https://checkout.razorpay.com https://cdn.jsdelivr.net https://cdn.datatables.net https://cdn.ckeditor.com",
+            "script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://js.stripe.com https://cdn.jsdelivr.net https://cdn.datatables.net https://cdn.ckeditor.com https://code.jquery.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net",
             "img-src 'self' data: blob: https:",
-            "font-src 'self' data: https://fonts.bunny.net",
-            "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://api.stripe.com",
-            "frame-src https://api.razorpay.com https://js.stripe.com https://hooks.stripe.com",
+            "font-src 'self' data: https://fonts.bunny.net https://cdn.jsdelivr.net https://cdn.ckeditor.com",
+            "connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com https://api.stripe.com https://www.google-analytics.com https://region1.google-analytics.com",
+            "frame-src https://api.razorpay.com https://js.stripe.com https://hooks.stripe.com https://www.google.com https://www.googletagmanager.com",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self' https://checkout.razorpay.com",

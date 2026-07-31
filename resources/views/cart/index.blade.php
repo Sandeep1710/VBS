@@ -48,22 +48,22 @@
             <div class="space-y-3">
                 @foreach($cart->items as $item)
                     @php $product = $item->product; @endphp
-                    <x-card padding="p-4">
-                        <div class="relative flex gap-4">
-                            {{-- Remove button pinned to top-right corner --}}
-                            <button type="button"
-                                    class="js-cart-remove-btn absolute -right-1 -top-1 z-10 grid h-8 w-8 place-items-center rounded-full bg-white text-red-600 shadow-sm ring-1 ring-red-200 transition-all hover:scale-105 hover:bg-red-600 hover:text-white hover:ring-red-600"
-                                    data-form-id="cart-remove-{{ $item->id }}"
-                                    data-item-name="{{ $product?->name ?? 'this item' }}"
-                                    aria-label="Remove from cart" title="Remove from cart">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                    <line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>
-                                </svg>
-                            </button>
-                            <form id="cart-remove-{{ $item->id }}" method="POST" action="{{ route('cart.remove', $item) }}" class="hidden">
-                                @csrf @method('DELETE')
-                            </form>
+                    <x-card padding="p-4" class="relative">
+                        {{-- Remove button pinned to top-right corner of the OUTER card --}}
+                        <button type="button"
+                                class="js-cart-remove-btn absolute bottom-3 right-3 z-10 grid h-8 w-8 place-items-center rounded-full bg-white text-red-600 shadow-sm ring-1 ring-red-200 transition-all hover:scale-105 hover:bg-red-600 hover:text-white hover:ring-red-600"
+                                data-form-id="cart-remove-{{ $item->id }}"
+                                data-item-name="{{ $product?->name ?? 'this item' }}"
+                                aria-label="Remove from cart" title="Remove from cart">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>
+                            </svg>
+                        </button>
+                        <form id="cart-remove-{{ $item->id }}" method="POST" action="{{ route('cart.remove', $item) }}" class="hidden">
+                            @csrf @method('DELETE')
+                        </form>
 
+                        <div class="flex gap-4">
                             <a href="{{ $product ? route('products.show', $product) : '#' }}" class="h-24 w-24 shrink-0 rounded-lg bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
                                 @if($product)
                                     <x-battery-image :product="$product" class="h-full w-full object-contain p-1" />

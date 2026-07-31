@@ -8,7 +8,7 @@
     $checkedCategories = $activeFilters['category'] ?? [];
 @endphp
 
-<form method="GET" action="{{ url()->current() }}" class="card p-5 sticky top-20">
+<form method="GET" action="{{ url()->current() }}" class="js-filter-form card p-5 sticky top-20">
     @if($activeFilters['vehicle_variant'])
         <input type="hidden" name="vehicle_variant" value="{{ $activeFilters['vehicle_variant'] }}">
     @endif
@@ -64,9 +64,15 @@
             </label>
         </div>
 
-        <div class="flex flex-col gap-2 pt-2">
-            <button type="submit" class="btn btn-primary w-full">Apply filters</button>
-            <a href="{{ url()->current() }}" class="btn btn-outline w-full text-xs">Clear all</a>
+        <div class="pt-2">
+            <a href="{{ url()->current() }}" class="btn btn-outline w-full text-xs">Clear all filters</a>
         </div>
+
+        {{-- Fallback for users with JavaScript disabled --}}
+        <noscript>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary w-full">Apply filters</button>
+            </div>
+        </noscript>
     </div>
 </form>

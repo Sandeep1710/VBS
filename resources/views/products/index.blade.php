@@ -30,6 +30,40 @@
         @endphp
         <script type="application/ld+json">{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
         <script type="application/ld+json">{!! json_encode(array_filter($collectionSchema, fn ($v) => $v !== null), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+
+        {{-- Auto-apply filters: submit on any change. Debounce number inputs. --}}
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('change', function (e) {
+                var form = e.target.closest('.js-filter-form');
+                if (!form) return;
+
+                // On the mobile drawer, close the <details> so the reload starts fresh
+                var details = form.closest('details');
+                if (details) details.removeAttribute('open');
+
+                // Debounce text/number inputs so we don't submit on every keystroke
+                if (['text', 'number'].indexOf(e.target.type) !== -1) {
+                    clearTimeout(form.__filterTimer);
+                    form.__filterTimer = setTimeout(function () { form.submit(); }, 600);
+                } else {
+                    form.submit();
+                }
+            });
+
+            // Also fire on Enter inside a number/text input (in case blur doesn't happen)
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Enter') return;
+                var form = e.target.closest('.js-filter-form');
+                if (!form) return;
+                if (['text', 'number'].indexOf(e.target.type) !== -1) {
+                    e.preventDefault();
+                    clearTimeout(form.__filterTimer);
+                    form.submit();
+                }
+            });
+        });
+        </script>
     @endpush
 
     <div class="mb-6 flex flex-col gap-4">
