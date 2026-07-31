@@ -1,4 +1,34 @@
 <x-layouts.app :title="'Your Cart | Trikuti Battery'">
+    @push('head')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.js-cart-remove-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var formId = btn.getAttribute('data-form-id');
+                    var name   = btn.getAttribute('data-item-name') || 'this item';
+                    Swal.fire({
+                        title: 'Remove from cart?',
+                        html: 'Remove <strong>' + name + '</strong> from your cart?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#dc2626',
+                        cancelButtonColor: '#64748b',
+                        confirmButtonText: 'Yes, remove',
+                        cancelButtonText: 'Cancel',
+                        reverseButtons: true,
+                    }).then(function (r) {
+                        if (r.isConfirmed) {
+                            var form = document.getElementById(formId);
+                            if (form) form.submit();
+                        }
+                    });
+                });
+            });
+        });
+        </script>
+    @endpush
+
     <h1 class="text-2xl font-bold text-ink-900 sm:text-3xl">Your cart</h1>
     <p class="mt-1 text-sm text-ink-600">{{ $itemsCount }} item(s)</p>
 
@@ -19,7 +49,21 @@
                 @foreach($cart->items as $item)
                     @php $product = $item->product; @endphp
                     <x-card padding="p-4">
-                        <div class="flex gap-4">
+                        <div class="relative flex gap-4">
+                            {{-- Remove button pinned to top-right corner --}}
+                            <button type="button"
+                                    class="js-cart-remove-btn absolute -right-1 -top-1 z-10 grid h-8 w-8 place-items-center rounded-full bg-white text-red-600 shadow-sm ring-1 ring-red-200 transition-all hover:scale-105 hover:bg-red-600 hover:text-white hover:ring-red-600"
+                                    data-form-id="cart-remove-{{ $item->id }}"
+                                    data-item-name="{{ $product?->name ?? 'this item' }}"
+                                    aria-label="Remove from cart" title="Remove from cart">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>
+                                </svg>
+                            </button>
+                            <form id="cart-remove-{{ $item->id }}" method="POST" action="{{ route('cart.remove', $item) }}" class="hidden">
+                                @csrf @method('DELETE')
+                            </form>
+
                             <a href="{{ $product ? route('products.show', $product) : '#' }}" class="h-24 w-24 shrink-0 rounded-lg bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
                                 @if($product)
                                     <x-battery-image :product="$product" class="h-full w-full object-contain p-1" />
@@ -27,23 +71,17 @@
                             </a>
 
                             <div class="flex flex-1 flex-col">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div class="min-w-0 flex-1">
-                                        <p class="text-xs font-medium uppercase tracking-wider text-ink-500">{{ $product?->batteryBrand?->name }}</p>
-                                        <h3 class="mt-0.5 text-sm font-semibold text-ink-900">
-                                            <a href="{{ $product ? route('products.show', $product) : '#' }}" class="hover:text-brand-600">{{ $product?->name ?? '—' }}</a>
-                                        </h3>
-                                        @if($product?->capacity_ah || $product?->warranty_months)
-                                            <p class="mt-0.5 text-xs text-ink-500">
-                                                @if($product?->capacity_ah){{ rtrim(rtrim($product->capacity_ah, '0'), '.') }} Ah · @endif
-                                                {{ $product?->warranty_months }} months warranty
-                                            </p>
-                                        @endif
-                                    </div>
-                                    <form method="POST" action="{{ route('cart.remove', $item) }}" onsubmit="return confirm('Remove from cart?')">
-                                        @csrf @method('DELETE')
-                                        <button class="text-xs font-medium text-red-600 hover:text-red-700">Remove</button>
-                                    </form>
+                                <div class="pr-8">
+                                    <p class="text-xs font-medium uppercase tracking-wider text-ink-500">{{ $product?->batteryBrand?->name }}</p>
+                                    <h3 class="mt-0.5 text-sm font-semibold text-ink-900">
+                                        <a href="{{ $product ? route('products.show', $product) : '#' }}" class="hover:text-brand-600">{{ $product?->name ?? '—' }}</a>
+                                    </h3>
+                                    @if($product?->capacity_ah || $product?->warranty_months)
+                                        <p class="mt-0.5 text-xs text-ink-500">
+                                            @if($product?->capacity_ah){{ rtrim(rtrim($product->capacity_ah, '0'), '.') }} Ah · @endif
+                                            {{ $product?->warranty_months }} months warranty
+                                        </p>
+                                    @endif
                                 </div>
 
                                 <div class="mt-3 flex flex-wrap items-center gap-3">
