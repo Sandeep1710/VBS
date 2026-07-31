@@ -61,6 +61,7 @@
             'heading' => 'Settings',
             'items' => [
                 ['label' => 'Delivery Pincodes', 'route' => 'admin.pincodes.index', 'match' => 'admin.pincodes.*', 'icon' => 'M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z'],
+                ['label' => 'Audit Log', 'route' => 'admin.audit-logs.index', 'match' => 'admin.audit-logs.*', 'icon' => 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z M8 6h13 M8 12h13 M8 18h13 M3 6h.01 M3 12h.01 M3 18h.01'],
             ],
         ],
     ];

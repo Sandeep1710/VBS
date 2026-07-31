@@ -6,6 +6,7 @@ use App\Http\Requests\Checkout\PlaceOrderRequest;
 use App\Models\Order;
 use App\Models\User;
 use App\Notifications\OrderPlacedNotification;
+use App\Services\Audit\AuditLogger;
 use App\Services\Cart\CartService;
 use App\Services\Checkout\CheckoutService;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +23,7 @@ class CheckoutController extends Controller
     public function __construct(
         private readonly CartService $cart,
         private readonly CheckoutService $checkout,
+        private readonly AuditLogger $audit,
     ) {
     }
 
@@ -99,6 +101,14 @@ class CheckoutController extends Controller
         }
 
         Notification::send($order->user, new OrderPlacedNotification($order));
+
+        $this->audit->log('lead.created', 'New enquiry submitted', $order, [
+            'name'    => $data['name'],
+            'phone'   => $data['phone'],
+            'pincode' => $data['pincode'],
+            'total'   => (float) $order->total,
+            'items'   => $order->items->count(),
+        ]);
 
         session(['guest_order_id' => $order->id]);
 

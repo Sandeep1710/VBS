@@ -34,6 +34,15 @@ class HomeController extends Controller
     public function cmsPage(string $slug): View
     {
         $page = CmsPage::where('slug', $slug)->where('is_active', true)->firstOrFail();
-        return view('cms-page', compact('page'));
+
+        // Slugs that have their own hand-crafted layout — fall back to the plain
+        // CMS renderer for anything else (privacy, terms, refund, shipping, ...).
+        $customViews = [
+            'about-us'   => 'about-us',
+            'contact-us' => 'contact-us',
+        ];
+        $viewName = $customViews[$slug] ?? 'cms-page';
+
+        return view($viewName, compact('page'));
     }
 }

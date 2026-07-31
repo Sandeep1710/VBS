@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\AuditLogController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BatteryBrandController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -69,5 +70,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Static pages
         Route::get('pages', [PageController::class, 'index'])->name('pages.index');
         Route::put('pages/{slug}', [PageController::class, 'update'])->name('pages.update');
+
+        // Audit log
+        Route::get('audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
     });
 });

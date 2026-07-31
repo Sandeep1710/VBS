@@ -1,5 +1,13 @@
 @props(['product'])
 
+@php
+    $whatsapp = \App\Models\Setting::get('whatsapp_number', '+919920971479');
+    $waNumber = preg_replace('/[^0-9]/', '', $whatsapp);
+    $productUrl = route('products.show', $product);
+    $waMessage = "Hi Trikuti Battery, I'm interested in \"{$product->name}\" ({$productUrl}). Please share the best price and delivery details.";
+    $waHref = 'https://wa.me/' . $waNumber . '?text=' . rawurlencode($waMessage);
+@endphp
+
 <article class="card flex h-full flex-col overflow-hidden transition-transform hover:-translate-y-0.5">
     <a href="{{ route('products.show', $product) }}" class="block">
         <div class="aspect-square relative bg-gradient-to-br from-slate-50 to-slate-100">
@@ -45,7 +53,15 @@
             <p class="mt-1 text-xs font-medium text-green-700">+ ₹{{ number_format((float) $product->exchange_discount, 0) }} off on old battery exchange</p>
         @endif
 
-        <div class="mt-auto pt-4">
+        <div class="mt-auto grid grid-cols-2 gap-2 pt-4">
+            {{-- Enquire Now: opens WhatsApp with a pre-filled message that names this product --}}
+            @if($product->in_stock)
+                <a href="{{ $waHref }}" target="_blank" rel="noopener" class="btn btn-primary w-full text-xs">
+                    💬 Enquire
+                </a>
+            @else
+                <button type="button" disabled class="btn btn-primary w-full text-xs">Out of stock</button>
+            @endif
             <a href="{{ route('products.show', $product) }}" class="btn btn-outline w-full text-xs">View details</a>
         </div>
     </div>

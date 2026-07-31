@@ -48,8 +48,11 @@ class CartController extends Controller
             (bool) ($data['exchange_old_battery'] ?? false),
         );
 
+        // LEAD-GEN MODE: buy_now (Enquire Now / Schedule a Call) skips the cart page
+        // and jumps straight to the callback form.
+        // Original: return redirect()->route('cart.index')->with('success', 'Item added. Review and place your order.');
         if ($request->boolean('buy_now')) {
-            return redirect()->route('cart.index')->with('success', 'Item added. Review and place your order.');
+            return redirect()->route('checkout.index');
         }
 
         return back()->with('success', 'Added to cart.');
