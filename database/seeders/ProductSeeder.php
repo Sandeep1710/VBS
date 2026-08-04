@@ -218,10 +218,18 @@ class ProductSeeder extends Seeder
                 ],
             );
 
-            ProductImage::updateOrCreate(
-                ['product_id' => $product->id, 'path' => 'products/placeholder.svg'],
-                ['alt' => $product->name, 'sort_order' => 0, 'is_primary' => true],
-            );
+            // Only seed a placeholder image if this product has NO images yet.
+            // This prevents reseeds from clobbering real product images uploaded
+            // via admin or mapped by the scratchpad/map_product_images.php script.
+            if (! ProductImage::where('product_id', $product->id)->exists()) {
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'path'       => 'products/placeholder.svg',
+                    'alt'        => $product->name,
+                    'sort_order' => 0,
+                    'is_primary' => true,
+                ]);
+            }
 
             $specs = [
                 ['Battery',  'Capacity',        $product->capacity_ah . ' Ah'],
