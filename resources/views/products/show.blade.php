@@ -102,7 +102,7 @@
             <div class="mx-auto mt-6 hidden max-w-md rounded-xl border border-ink-200 bg-white p-4 lg:block">
                 <div class="grid grid-cols-2 gap-3 text-xs">
                     @foreach([
-                        ['Same-day delivery in Mumbai', 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
+                        ['Same or next-day delivery in Mumbai', 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
                         ['Manufacturer warranty', 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
                         ['100% genuine product', 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z'],
                         ['Free installation on-site', 'M9 12l2 2 4-4M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
@@ -273,7 +273,7 @@
             {{-- Mobile trust bar (desktop shows it under the image) --}}
             <div class="mt-6 grid grid-cols-2 gap-3 border-t border-ink-200/60 pt-5 text-xs lg:hidden">
                 @foreach([
-                    ['Same-day delivery', 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
+                    ['Same or next-day delivery', 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
                     ['Manufacturer warranty', 'M9 12l2 2 4-4M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
                     ['Genuine product', 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z'],
                     ['Free installation', 'M3 12h18M5 12V5h14v7'],

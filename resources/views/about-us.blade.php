@@ -55,7 +55,7 @@
                     A dead battery always strikes at the worst possible moment — a Monday morning, in the middle of a downpour, or right before an important meeting. We started Trikuti Battery in Navi Mumbai because we were tired of watching people lose half their day chasing quotes, hauling out old batteries, and being sold whatever the local shop had in stock.
                 </p>
                 <p>
-                    Today we deliver genuine <strong>Exide, Amaron, SF Sonic, Luminous</strong> and <strong>Bosch</strong> batteries across Mumbai, Thane and Navi Mumbai — usually the same day. Our technicians handle the swap, cart away your old battery, and register the manufacturer warranty on the spot. No paperwork. No back-and-forth. No surprises.
+                    Today we deliver genuine <strong>Exide, Amaron</strong> and <strong>Bosch</strong> batteries across Mumbai, Thane and Navi Mumbai — usually same day, and always by the next working day. Our technicians handle the swap, cart away your old battery, and register the manufacturer warranty on the spot. No paperwork. No back-and-forth. No surprises.
                 </p>
             </div>
         </div>
@@ -65,7 +65,7 @@
                 @foreach([
                     ['title' => 'Free installation', 'desc' => 'Certified technician swaps your battery in under 15 minutes.', 'icon' => 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z M9 12l2 2 4-4'],
                     ['title' => 'Old battery pickup', 'desc' => 'We haul away your dead battery and give you up to ₹800 off.', 'icon' => 'M3 12a9 9 0 1 0 3-6.7M3 4v5h5'],
-                    ['title' => 'Same-day delivery', 'desc' => 'Order before 2 PM in Mumbai for same-day delivery.', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
+                    ['title' => 'Fast delivery', 'desc' => 'Delivered the same day or by the next working day in Mumbai.', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
                     ['title' => 'Real warranty', 'desc' => 'Full manufacturer warranty — we handle any claim for you.', 'icon' => 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
                 ] as $card)
                     <div class="flex items-start gap-3">
@@ -113,22 +113,22 @@
             <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center">
                 <div>
                     <p class="text-xs font-bold uppercase tracking-widest text-brand-600">Service area</p>
-                    <h2 class="mt-2 text-2xl font-extrabold text-ink-900 sm:text-3xl">We deliver across Mumbai metro</h2>
-                    <p class="mt-3 text-sm text-ink-600 sm:text-base">Free same/next-day delivery to <strong>Mumbai City &amp; Suburbs</strong>. ₹99 delivery within 2 business days for <strong>Thane</strong> and <strong>Navi Mumbai</strong>.</p>
+                    <h2 class="mt-2 text-2xl font-extrabold text-ink-900 sm:text-3xl">Where we deliver</h2>
+                    <p class="mt-3 text-sm text-ink-600 sm:text-base">Flat ₹99 delivery across our home zone (Navi Mumbai + Thane + Mulund–Kanjurmarg belt). ₹199 for the extended Central Railway line. <strong>Free delivery on orders above ₹12,000.</strong></p>
 
-                    <div class="mt-5 grid gap-3 sm:grid-cols-3">
-                        @foreach([
-                            ['title' => 'Mumbai', 'pins' => '400001 – 400104', 'note' => 'Free · Same day'],
-                            ['title' => 'Thane', 'pins' => '400601 – 400615', 'note' => '₹99 · 2 days'],
-                            ['title' => 'Navi Mumbai', 'pins' => '400701 – 400710', 'note' => '₹99 · 2 days'],
-                        ] as $area)
-                            <div class="rounded-lg border border-ink-200 p-3">
-                                <p class="text-sm font-bold text-ink-900">{{ $area['title'] }}</p>
-                                <p class="mt-0.5 font-mono text-xs text-ink-500">{{ $area['pins'] }}</p>
-                                <p class="mt-1 text-xs font-semibold text-green-700">{{ $area['note'] }}</p>
-                            </div>
-                        @endforeach
+                    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                        <div class="rounded-lg border-2 border-brand-200 bg-brand-50/40 p-3">
+                            <p class="text-sm font-bold text-ink-900">Zone A — Home base</p>
+                            <p class="mt-1 text-xs text-ink-600 leading-relaxed">Rabale · Airoli · Ghansoli · Kopar Khairane · Turbhe · Vashi · Sanpada · Juinagar · Nerul · Thane (West + East) · Kalwa · Mulund · Nahur · Bhandup · Kanjurmarg</p>
+                            <p class="mt-2 text-xs font-bold text-green-700">₹99 · Same or next day</p>
+                        </div>
+                        <div class="rounded-lg border border-ink-200 p-3">
+                            <p class="text-sm font-bold text-ink-900">Zone B — Central Railway</p>
+                            <p class="mt-1 text-xs text-ink-600 leading-relaxed">Mumbra · Diva · Dombivli (East + West) · Kalyan (East + West)</p>
+                            <p class="mt-2 text-xs font-bold text-green-700">₹199 · 1–2 business days</p>
+                        </div>
                     </div>
+                    <p class="mt-3 text-xs italic text-ink-500">Any pincode outside these zones? Sorry — we're not delivering there yet. We're focused on getting our home zones perfectly right first.</p>
                 </div>
 
                 <div class="rounded-xl bg-ink-50 p-5 text-center ring-1 ring-ink-200">

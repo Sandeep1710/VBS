@@ -108,7 +108,7 @@
 
                     {{-- Trust signals --}}
                     <div class="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium" style="color: rgba(255,255,255,0.6);">
-                        @foreach(['Same-day delivery', 'Free installation', 'COD available'] as $signal)
+                        @foreach(['Same or next-day delivery', 'Free installation', 'COD available'] as $signal)
                             <span class="inline-flex items-center gap-1.5">
                                 <svg class="h-3.5 w-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20" style="color: #f87171;">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.7-9.3a1 1 0 0 0-1.4-1.4L9 10.6 7.7 9.3a1 1 0 0 0-1.4 1.4l2 2a1 1 0 0 0 1.4 0l4-4Z" clip-rule="evenodd"/>
@@ -275,7 +275,7 @@
         <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach([
                 ['title' => 'Genuine batteries', 'desc' => 'Direct from authorised dealers, sealed with manufacturer warranty.', 'icon' => 'M12 2 4 5v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V5l-8-3Z M9 12l2 2 4-4'],
-                ['title' => 'Same-day delivery', 'desc' => 'Order before 2 PM in Mumbai — delivered the same evening.', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
+                ['title' => 'Same or next-day delivery', 'desc' => 'Order today, delivered today or tomorrow across Mumbai metro.', 'icon' => 'M3 7h13a4 4 0 0 1 0 8H10 M7 11l-4 4 4 4'],
                 ['title' => 'Warranty support', 'desc' => 'Full manufacturer warranty on every battery — we handle claims for you.', 'icon' => 'M9 12l2 2 4-4 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z'],
                 ['title' => 'Battery exchange', 'desc' => 'Save up to ₹800 instantly. We pick up your old battery.', 'icon' => 'M3 12a9 9 0 1 0 3-6.7M3 4v5h5'],
             ] as $card)
@@ -342,7 +342,7 @@
                     </h2>
                     <p class="mt-3 max-w-md text-sm leading-relaxed text-ink-600 sm:text-base">
                         Our Mumbai team is available <strong class="text-ink-900">Mon–Sat, 9 AM – 8 PM</strong>.
-                        Same-day delivery, free installation, old battery exchange.
+                        Same or next-day delivery, free installation, old battery exchange.
                     </p>
 
                     {{-- Hours strip --}}

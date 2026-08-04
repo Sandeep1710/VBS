@@ -20,7 +20,7 @@ class BannerSeeder extends Seeder
                 'sort_order' => 1,
             ],
             [
-                'title' => 'Same-day Battery Delivery across Mumbai',
+                'title' => 'Fast Battery Delivery across Mumbai — Same or Next Day',
                 'subtitle' => 'Free delivery + free installation + old battery exchange in all Mumbai pincodes.',
                 'image' => 'banners/hero-1.svg',
                 'link_url' => '/products',

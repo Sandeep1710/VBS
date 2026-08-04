@@ -18,19 +18,20 @@ class CmsContentSeeder extends Seeder
 <h3>Why choose us</h3>
 <ul>
 <li><strong>Genuine batteries only</strong> — sourced directly from authorised dealers of Exide, Amaron, SF Sonic and other top brands</li>
-<li><strong>Same-day delivery in Mumbai</strong> — order before 2pm for same-day delivery to all Mumbai City and Suburbs pincodes</li>
+<li><strong>Same or next-day delivery in Mumbai</strong> — orders confirmed today are delivered the same day or the next working day across Mumbai City and Suburbs</li>
 <li><strong>Free installation</strong> — our technician installs the battery and takes your old battery away</li>
 <li><strong>Old battery exchange</strong> — get up to ₹800 off when you exchange your old battery</li>
 <li><strong>Full manufacturer warranty</strong> — every battery comes with the brand's official warranty (24-48 months)</li>
 </ul>
 
 <h3>Service area</h3>
-<p>We currently serve:</p>
+<p>We currently deliver to:</p>
 <ul>
-<li>Mumbai City and Suburbs (400001 – 400104) — <strong>free delivery, same/next day</strong></li>
-<li>Thane (400601 – 400615) — ₹99 delivery, 2 business days</li>
-<li>Navi Mumbai (400701 – 400710) — ₹99 delivery, 2 business days</li>
+<li><strong>Zone A (₹99, same or next day):</strong> Rabale · Airoli · Ghansoli · Kopar Khairane · Turbhe · Vashi · Sanpada · Juinagar · Nerul · Thane (West + East) · Kalwa · Mulund · Nahur · Bhandup · Kanjurmarg</li>
+<li><strong>Zone B (₹199, 1–2 business days):</strong> Mumbra · Diva · Dombivli (East + West) · Kalyan (East + West)</li>
+<li><strong>Free delivery</strong> on orders above ₹12,000 (both zones)</li>
 </ul>
+<p>Any pincode outside these zones is not currently served — we're focused on getting our home zones perfectly right first.</p>
 
 <h3>Payment options</h3>
 <p>Cash on Delivery is our primary option — pay when the battery is delivered to your doorstep. UPI (Google Pay / PhonePe / Paytm) accepted at delivery too.</p>
@@ -94,8 +95,8 @@ HTML;
         }
 
         $faqs = [
-            ['Delivery', 'How fast is delivery in Mumbai?', 'For all Mumbai City and Suburbs pincodes (400001 – 400104), we deliver same-day for orders placed before 2pm, and next-day for later orders. Thane and Navi Mumbai take 2 business days.'],
-            ['Delivery', 'Is delivery free?', 'Yes — free delivery across all Mumbai City and Suburbs pincodes. Thane and Navi Mumbai have a flat ₹99 delivery charge.'],
+            ['Delivery', 'How fast is delivery?', 'Zone A (Navi Mumbai + Thane + Mulund–Kanjurmarg belt): same or next working day. Zone B (Mumbra + Diva + Dombivli + Kalyan): 1–2 business days. Our team confirms the exact delivery slot when we call you back.'],
+            ['Delivery', 'How much does delivery cost?', 'Flat ₹99 in Zone A (our home base) and ₹199 in Zone B (Central Railway line). Free delivery on orders above ₹12,000. Any pincode outside these zones is not served yet.'],
             ['Delivery', 'Do you install the battery?', 'Yes, free installation is included with every battery delivery. Our technician will install the new battery and take your old one away.'],
             ['Order', 'Can I cancel my order?', 'Yes, you can cancel from your account any time before the battery is dispatched.'],
             ['Battery', 'How does old battery exchange work?', 'Add the exchange option when adding a battery to cart. Hand over your old battery to the technician during installation and get up to ₹800 off instantly.'],
@@ -116,7 +117,7 @@ HTML;
             ['Rakesh Mehta', 'Doctor', 'Airoli', 5, 'Old battery pickup saved me a trip to the scrap dealer. Got ₹700 off instantly. Highly recommended for anyone in Navi Mumbai.'],
             ['Aman Verma', 'Business Owner', 'Vashi', 4, 'Better price than the local Amaron dealer and full warranty card with proper bill. Will buy again.'],
             ['Ravi Reddy', 'Teacher', 'Thane', 5, 'Was hesitant about ordering a battery online but the experience was smooth. Delivered next day, technician was professional.'],
-            ['Vikas Deshpande', 'Accountant', 'Mulund', 5, 'Same-day delivery worked exactly as promised. The team called before arriving and installation took under 15 minutes.'],
+            ['Vikas Deshpande', 'Accountant', 'Mulund', 5, 'Delivery was faster than expected — arrived the next morning as promised. The team called before coming and installation took under 15 minutes.'],
             ['Sagar Patil', 'HR Manager', 'Bhandup', 5, 'Great experience — pricing was transparent, invoice was clean, and the warranty card was activated on the spot.'],
         ];
 

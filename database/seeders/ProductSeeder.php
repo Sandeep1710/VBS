@@ -14,276 +14,158 @@ use Illuminate\Support\Str;
 use Throwable;
 
 /**
- * Trikuti Battery catalog — 70Ah – 120Ah range across 5 brands.
- * Prices are typical 2024-2025 Indian market retail with exchange offer.
- * Update via /admin/products once supplier prices are confirmed.
+ * Trikuti Battery catalog — 70Ah – 120Ah range.
+ *
+ * SKU codes and MRP prices are pulled from the official manufacturer MRCP PDFs
+ * (see storage/app/public/catalogs/):
+ *   - Exide MRCP dated 1 June 2026
+ *   - SF Batteries MRCP dated 10 June 2026
+ * Amaron entries use street-price data from batterybhai.com (no public MRP).
+ *
+ * Offer prices are set at typical Mumbai dealer/street discount (~20-30% off MRP).
+ * Update via /admin/products once your distributor confirms wholesale pricing.
  */
 class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        $carCat  = Category::where('slug', 'car-batteries')->first();
-        $exide     = BatteryBrand::where('slug', 'exide')->first();
-        $amaron    = BatteryBrand::where('slug', 'amaron')->first();
-        $sfSonic   = BatteryBrand::where('slug', 'sf-sonic')->first();
-        $luminous  = BatteryBrand::where('slug', 'luminous')->first();
-        $bosch     = BatteryBrand::where('slug', 'bosch')->first();
+        $carCat = Category::where('slug', 'car-batteries')->first();
+        $exide  = BatteryBrand::where('slug', 'exide')->first();
+        $amaron = BatteryBrand::where('slug', 'amaron')->first();
+        // SF Sonic retired — see BatteryBrandSeeder
 
         $products = [
-            // ─── 70 Ah — Compact SUVs / mid-large sedans ───────────────────────────
+            // ═══════════════════════════════════════════════════════════════════════
+            // 70 Ah — Compact SUVs / mid-large sedans
+            // ═══════════════════════════════════════════════════════════════════════
             [
-                'name' => 'Exide Matrix MI-DIN70 70Ah', 'sku' => 'EX-MTX-70',
-                'brand' => $exide, 'capacity_ah' => 70, 'warranty_months' => 48,
-                'price' => 10000, 'offer_price' => 8899, 'exchange_discount' => 800,
+                'name' => 'Exide Mileage MLDIN70(ISS) 70Ah',
+                'sku'  => 'EX-MLDIN70-ISS',
+                'brand' => $exide, 'capacity_ah' => 70, 'warranty_months' => 60,
+                'price' => 11296, 'offer_price' => 9099, 'exchange_discount' => 500,
                 'stock_quantity' => 20, 'is_featured' => false,
-                'short_description' => 'Exide Matrix 70Ah DIN70 — reliable European-standard battery for compact SUVs.',
-                'fits' => 'Ford Ecosport (older) · Renault Duster · Nissan Terrano · Tata Hexa (petrol)',
+                'short_description' => 'Exide Mileage ISS 70Ah — for Idle Stop-Start vehicles. 60-month warranty (30+30).',
+                'fits' => 'Renault Duster · Nissan Terrano · Ford Ecosport · Tata Hexa · start-stop vehicles',
             ],
             [
-                'name' => 'Amaron Hi-Life 70Ah (DIN70)', 'sku' => 'AM-HL-70',
+                'name' => 'Amaron Hi-Life Pro DIN70 70Ah',
+                'sku'  => 'AM-HL-DIN70',
                 'brand' => $amaron, 'capacity_ah' => 70, 'warranty_months' => 48,
-                'price' => 9800, 'offer_price' => 8699, 'exchange_discount' => 800,
+                'price' => 9800, 'offer_price' => 8799, 'exchange_discount' => 500,
                 'stock_quantity' => 20, 'is_featured' => false,
                 'short_description' => 'Amaron 70Ah DIN70 — long-life SUV battery with 48-month warranty.',
                 'fits' => 'Renault Duster · Nissan Terrano · Ford Ecosport · Tata Hexa',
             ],
+
+            // ═══════════════════════════════════════════════════════════════════════
+            // 74 Ah — Premium mid-sedan (Honda City, Verna DINi74)
+            // ═══════════════════════════════════════════════════════════════════════
             [
-                'name' => 'SF Sonic FSF0-DIN70 70Ah', 'sku' => 'SF-DIN-70',
-                'brand' => $sfSonic, 'capacity_ah' => 70, 'warranty_months' => 42,
-                'price' => 9400, 'offer_price' => 8299, 'exchange_discount' => 700,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'SF Sonic 70Ah DIN70 — value SUV battery, Exide-backed reliability.',
-                'fits' => 'Renault Duster · Ford Ecosport · Nissan Terrano · Tata Hexa',
+                'name' => 'Exide EPIQ DIN74L 74Ah',
+                'sku'  => 'EX-EPIQ-DIN74L',
+                'brand' => $exide, 'capacity_ah' => 74, 'warranty_months' => 77,
+                'price' => 14648, 'offer_price' => 12099, 'exchange_discount' => 550,
+                'stock_quantity' => 12, 'is_featured' => true,
+                'short_description' => 'Exide EPIQ — premium DIN74L with class-leading 77-month warranty (42+35).',
+                'fits' => 'Honda City · Hyundai Verna · Skoda Rapid · VW Vento · premium sedans',
             ],
             [
-                'name' => 'Luminous Car Batz 70Ah', 'sku' => 'LM-CB-70',
-                'brand' => $luminous, 'capacity_ah' => 70, 'warranty_months' => 42,
-                'price' => 9200, 'offer_price' => 8199, 'exchange_discount' => 700,
+                'name' => 'Amaron Pro 574102069 74Ah',
+                'sku'  => 'AM-PR-574102069',
+                'brand' => $amaron, 'capacity_ah' => 74, 'warranty_months' => 66,
+                'price' => 10849, 'offer_price' => 9399, 'exchange_discount' => 550,
                 'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'Luminous Car Batz 70Ah — durable maintenance-free battery for compact SUVs.',
-                'fits' => 'Renault Duster · Nissan Terrano · Ford Ecosport · Tata Hexa',
-            ],
-            [
-                'name' => 'Bosch S4 70Ah', 'sku' => 'BO-S4-70',
-                'brand' => $bosch, 'capacity_ah' => 70, 'warranty_months' => 48,
-                'price' => 10200, 'offer_price' => 8999, 'exchange_discount' => 800,
-                'stock_quantity' => 12, 'is_featured' => false,
-                'short_description' => 'Bosch S4 70Ah — German engineering, top-tier calcium technology for extended life.',
-                'fits' => 'Renault Duster · Nissan Terrano · Ford Ecosport · Tata Hexa · VW Polo',
+                'short_description' => 'Amaron Pro 74Ah — 66-month warranty (36+30), silver-alloy technology.',
+                'fits' => 'Honda City · Hyundai Verna · Skoda Rapid · VW Vento',
             ],
 
-            // ─── 75 Ah — SUVs (Creta, Seltos, Nexon segment) ───────────────────────
+            // ═══════════════════════════════════════════════════════════════════════
+            // 80 Ah — Innova / Fortuner (older) / Bolero / Endeavour segment
+            // ═══════════════════════════════════════════════════════════════════════
             [
-                'name' => 'Exide MP-DIN75 75Ah', 'sku' => 'EX-MP-75',
-                'brand' => $exide, 'capacity_ah' => 75, 'warranty_months' => 55,
-                'price' => 10500, 'offer_price' => 9299, 'exchange_discount' => 900,
-                'stock_quantity' => 25, 'is_featured' => false,
-                'short_description' => 'Exide Marathon Plus 75Ah DIN75 — heavy-duty for popular SUVs.',
-                'fits' => 'Hyundai Creta · Kia Seltos · Tata Nexon · Mahindra XUV300 · MG Astor',
+                'name' => 'Exide Mileage MLDIN80 80Ah',
+                'sku'  => 'EX-MLDIN80',
+                'brand' => $exide, 'capacity_ah' => 80, 'warranty_months' => 60,
+                'price' => 14093, 'offer_price' => 11399, 'exchange_discount' => 600,
+                'stock_quantity' => 25, 'is_featured' => true,
+                'short_description' => 'Exide Mileage 80Ah DIN80 — trusted 60-month workhorse for large SUVs.',
+                'fits' => 'Toyota Innova · Toyota Fortuner (older) · Ford Endeavour · Mahindra XUV500',
             ],
             [
-                'name' => 'Amaron Hi-Life Pro 75Ah (DIN75)', 'sku' => 'AM-HL-75',
-                'brand' => $amaron, 'capacity_ah' => 75, 'warranty_months' => 55,
-                'price' => 10300, 'offer_price' => 9099, 'exchange_discount' => 900,
-                'stock_quantity' => 30, 'is_featured' => true,
-                'short_description' => 'Amaron 75Ah DIN75 with 55-month warranty — proven SUV battery.',
-                'fits' => 'Hyundai Creta · Kia Seltos · Tata Nexon · Ford Ecosport · MG Hector',
-            ],
-            [
-                'name' => 'SF Sonic FSF0-DIN75 75Ah', 'sku' => 'SF-DIN-75',
-                'brand' => $sfSonic, 'capacity_ah' => 75, 'warranty_months' => 48,
-                'price' => 9900, 'offer_price' => 8699, 'exchange_discount' => 800,
+                'name' => 'Exide Drive DRIVE80L 80Ah',
+                'sku'  => 'EX-DRIVE80L',
+                'brand' => $exide, 'capacity_ah' => 80, 'warranty_months' => 36,
+                'price' => 7932, 'offer_price' => 6399, 'exchange_discount' => 600,
                 'stock_quantity' => 20, 'is_featured' => false,
-                'short_description' => 'SF Sonic 75Ah DIN75 — Exide-backed value pick for SUVs.',
-                'fits' => 'Hyundai Creta · Kia Seltos · Tata Nexon · Renault Duster',
+                'short_description' => 'Exide Drive 80Ah — budget-friendly 36-month option, dependable performance.',
+                'fits' => 'Older Innova · Bolero · older diesel SUVs',
             ],
             [
-                'name' => 'Luminous Car Batz 75Ah', 'sku' => 'LM-CB-75',
-                'brand' => $luminous, 'capacity_ah' => 75, 'warranty_months' => 48,
-                'price' => 9700, 'offer_price' => 8499, 'exchange_discount' => 800,
-                'stock_quantity' => 18, 'is_featured' => false,
-                'short_description' => 'Luminous 75Ah — maintenance-free SUV battery.',
-                'fits' => 'Hyundai Creta · Kia Seltos · Tata Nexon · Mahindra XUV300',
-            ],
-            [
-                'name' => 'Bosch S4 75Ah', 'sku' => 'BO-S4-75',
-                'brand' => $bosch, 'capacity_ah' => 75, 'warranty_months' => 55,
-                'price' => 10700, 'offer_price' => 9499, 'exchange_discount' => 900,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'Bosch S4 75Ah — premium German-engineered SUV battery.',
-                'fits' => 'Hyundai Creta · Kia Seltos · Tata Nexon · VW Vento · Skoda Rapid',
+                'name' => 'Amaron FL-580112073 80Ah',
+                'sku'  => 'AM-FL-580112073',
+                'brand' => $amaron, 'capacity_ah' => 80, 'warranty_months' => 60,
+                'price' => 11099, 'offer_price' => 8999, 'exchange_discount' => 600,
+                'stock_quantity' => 25, 'is_featured' => true,
+                'short_description' => 'Amaron Hi-Way 80Ah — 60-month warranty (30+30), proven large-SUV battery.',
+                'fits' => 'Toyota Innova · Ford Endeavour · Mahindra XUV500 · Tata Safari',
             ],
 
-            // ─── 80 Ah — Innova / Fortuner / Bolero / Endeavour segment ────────────
+            // ═══════════════════════════════════════════════════════════════════════
+            // 100 Ah — Fortuner / Endeavour / luxury SUV segment
+            // ═══════════════════════════════════════════════════════════════════════
             [
-                'name' => 'Exide MP-DIN80 80Ah', 'sku' => 'EX-MP-80',
-                'brand' => $exide, 'capacity_ah' => 80, 'warranty_months' => 55,
-                'price' => 10800, 'offer_price' => 9599, 'exchange_discount' => 900,
-                'stock_quantity' => 30, 'is_featured' => true,
-                'short_description' => 'Exide Marathon Plus 80Ah — heavy-duty for Innova, Fortuner, Bolero.',
-                'fits' => 'Toyota Innova · Toyota Fortuner (older) · Mahindra Bolero · Ford Endeavour (older)',
-            ],
-            [
-                'name' => 'Amaron Hi-Life Pro 80Ah (DIN80)', 'sku' => 'AM-HL-80',
-                'brand' => $amaron, 'capacity_ah' => 80, 'warranty_months' => 55,
-                'price' => 10500, 'offer_price' => 9299, 'exchange_discount' => 900,
-                'stock_quantity' => 30, 'is_featured' => true,
-                'short_description' => 'Amaron 80Ah DIN80 with 55-month warranty — proven SUV/diesel battery.',
-                'fits' => 'Mahindra XUV500 · Tata Safari · Toyota Innova · Ford Endeavour',
-            ],
-            [
-                'name' => 'SF Sonic FSF0-DIN80 80Ah', 'sku' => 'SF-DIN-80',
-                'brand' => $sfSonic, 'capacity_ah' => 80, 'warranty_months' => 48,
-                'price' => 10200, 'offer_price' => 8999, 'exchange_discount' => 800,
-                'stock_quantity' => 25, 'is_featured' => false,
-                'short_description' => 'SF Sonic 80Ah DIN80 — value option for SUVs and diesel MPVs.',
-                'fits' => 'Mahindra Scorpio · Tata Safari · Toyota Innova · Bolero',
-            ],
-            [
-                'name' => 'Luminous Car Batz 80Ah', 'sku' => 'LM-CB-80',
-                'brand' => $luminous, 'capacity_ah' => 80, 'warranty_months' => 48,
-                'price' => 9900, 'offer_price' => 8799, 'exchange_discount' => 800,
+                'name' => 'Exide Xpress XP800 100Ah',
+                'sku'  => 'EX-XP800',
+                'brand' => $exide, 'capacity_ah' => 100, 'warranty_months' => 42,
+                'price' => 9941, 'offer_price' => 8099, 'exchange_discount' => 700,
                 'stock_quantity' => 20, 'is_featured' => false,
-                'short_description' => 'Luminous 80Ah — durable SUV battery.',
-                'fits' => 'Mahindra Scorpio · Tata Safari · Toyota Innova · Bolero',
+                'short_description' => 'Exide Xpress 100Ah — commercial-grade heavy-duty battery for tempos and MUVs.',
+                'fits' => 'Toyota Innova Crysta · Force Traveller · Tata Xenon · commercial vehicles',
             ],
             [
-                'name' => 'Bosch S4 80Ah', 'sku' => 'BO-S4-80',
-                'brand' => $bosch, 'capacity_ah' => 80, 'warranty_months' => 55,
-                'price' => 11000, 'offer_price' => 9799, 'exchange_discount' => 900,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'Bosch S4 80Ah — reliable German engineering for large SUVs.',
-                'fits' => 'Mahindra XUV500 · Toyota Innova · Ford Endeavour · Skoda Superb',
-            ],
-
-            // ─── 90 Ah — Larger diesel SUVs ────────────────────────────────────────
-            [
-                'name' => 'Exide Matrix MI-DIN90 90Ah', 'sku' => 'EX-MTX-90',
-                'brand' => $exide, 'capacity_ah' => 90, 'warranty_months' => 55,
-                'price' => 11900, 'offer_price' => 10499, 'exchange_discount' => 1000,
-                'stock_quantity' => 18, 'is_featured' => false,
-                'short_description' => 'Exide 90Ah DIN90 — high-capacity for premium diesel SUVs.',
-                'fits' => 'Hyundai Tucson · Jeep Compass · Skoda Kodiaq · VW Tiguan',
+                'name' => 'Exide Matrix MTREDDIN100 100Ah',
+                'sku'  => 'EX-MTRED-DIN100',
+                'brand' => $exide, 'capacity_ah' => 100, 'warranty_months' => 72,
+                'price' => 22312, 'offer_price' => 18099, 'exchange_discount' => 700,
+                'stock_quantity' => 10, 'is_featured' => true,
+                'short_description' => 'Exide Matrix 100Ah — top-tier premium battery with 72-month warranty (36+36).',
+                'fits' => 'Toyota Fortuner · Ford Endeavour · Skoda Superb · MG Gloster · Audi A4',
             ],
             [
-                'name' => 'Amaron Hi-Life 90Ah (DIN90)', 'sku' => 'AM-HL-90',
-                'brand' => $amaron, 'capacity_ah' => 90, 'warranty_months' => 55,
-                'price' => 11700, 'offer_price' => 10299, 'exchange_discount' => 1000,
-                'stock_quantity' => 18, 'is_featured' => false,
-                'short_description' => 'Amaron 90Ah DIN90 — premium SUV battery with 55-month warranty.',
-                'fits' => 'Hyundai Tucson · Jeep Compass · Volvo XC40 · Skoda Kodiaq',
-            ],
-            [
-                'name' => 'SF Sonic FSF0-DIN90 90Ah', 'sku' => 'SF-DIN-90',
-                'brand' => $sfSonic, 'capacity_ah' => 90, 'warranty_months' => 48,
-                'price' => 11200, 'offer_price' => 9899, 'exchange_discount' => 900,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'SF Sonic 90Ah DIN90 — value premium-SUV battery.',
-                'fits' => 'Hyundai Tucson · Jeep Compass · Skoda Kodiaq',
-            ],
-            [
-                'name' => 'Luminous Car Batz 90Ah', 'sku' => 'LM-CB-90',
-                'brand' => $luminous, 'capacity_ah' => 90, 'warranty_months' => 48,
-                'price' => 10800, 'offer_price' => 9599, 'exchange_discount' => 900,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'Luminous 90Ah — maintenance-free for large diesel SUVs.',
-                'fits' => 'Hyundai Tucson · Jeep Compass · Skoda Kodiaq',
-            ],
-            [
-                'name' => 'Bosch S4 90Ah', 'sku' => 'BO-S4-90',
-                'brand' => $bosch, 'capacity_ah' => 90, 'warranty_months' => 55,
-                'price' => 12100, 'offer_price' => 10699, 'exchange_discount' => 1000,
-                'stock_quantity' => 12, 'is_featured' => false,
-                'short_description' => 'Bosch S4 90Ah — high-performance battery for premium European SUVs.',
-                'fits' => 'Jeep Compass · VW Tiguan · Skoda Kodiaq · Audi Q3 · BMW X1',
-            ],
-
-            // ─── 100 Ah — Luxury SUV / premium sedan ───────────────────────────────
-            [
-                'name' => 'Exide MI-DIN100 100Ah', 'sku' => 'EX-MI-100',
-                'brand' => $exide, 'capacity_ah' => 100, 'warranty_months' => 55,
-                'price' => 13200, 'offer_price' => 11899, 'exchange_discount' => 1000,
-                'stock_quantity' => 20, 'is_featured' => true,
-                'short_description' => 'Exide 100Ah DIN100 — trusted premium-vehicle battery.',
-                'fits' => 'Toyota Fortuner · Ford Endeavour · Skoda Superb · Audi A4',
-            ],
-            [
-                'name' => 'Amaron Hi-Life 100Ah (DIN100)', 'sku' => 'AM-HL-100',
-                'brand' => $amaron, 'capacity_ah' => 100, 'warranty_months' => 55,
-                'price' => 12800, 'offer_price' => 11499, 'exchange_discount' => 1000,
-                'stock_quantity' => 20, 'is_featured' => true,
-                'short_description' => 'Amaron 100Ah DIN100 — luxury SUV / premium diesel battery, 55-month warranty.',
-                'fits' => 'Toyota Fortuner · Ford Endeavour · Skoda Superb · Hyundai Elantra · MG Gloster',
-            ],
-            [
-                'name' => 'SF Sonic FSF0-DIN100 100Ah', 'sku' => 'SF-DIN-100',
-                'brand' => $sfSonic, 'capacity_ah' => 100, 'warranty_months' => 48,
-                'price' => 12300, 'offer_price' => 10899, 'exchange_discount' => 900,
-                'stock_quantity' => 18, 'is_featured' => false,
-                'short_description' => 'SF Sonic 100Ah DIN100 — value luxury-SUV battery.',
-                'fits' => 'Toyota Fortuner · Ford Endeavour · Skoda Superb · Hyundai Elantra',
-            ],
-            [
-                'name' => 'Luminous Car Batz 100Ah', 'sku' => 'LM-CB-100',
-                'brand' => $luminous, 'capacity_ah' => 100, 'warranty_months' => 48,
-                'price' => 11900, 'offer_price' => 10499, 'exchange_discount' => 900,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'Luminous 100Ah — reliable for luxury SUVs and premium sedans.',
+                'name' => 'Amaron Pro 600109087 100Ah',
+                'sku'  => 'AM-PR-600109087',
+                'brand' => $amaron, 'capacity_ah' => 100, 'warranty_months' => 66,
+                'price' => 17599, 'offer_price' => 14999, 'exchange_discount' => 700,
+                'stock_quantity' => 12, 'is_featured' => true,
+                'short_description' => 'Amaron Pro 100Ah — 66-month warranty (36+30), premium SUV / diesel battery.',
                 'fits' => 'Toyota Fortuner · Ford Endeavour · Skoda Superb · MG Gloster',
             ],
-            [
-                'name' => 'Bosch S5 100Ah', 'sku' => 'BO-S5-100',
-                'brand' => $bosch, 'capacity_ah' => 100, 'warranty_months' => 60,
-                'price' => 13500, 'offer_price' => 11999, 'exchange_discount' => 1100,
-                'stock_quantity' => 12, 'is_featured' => false,
-                'short_description' => 'Bosch S5 100Ah — top-tier silver-calcium technology, 60-month warranty.',
-                'fits' => 'Toyota Fortuner · Ford Endeavour · Audi A6 · BMW 5 Series · Mercedes E-Class',
-            ],
 
-            // ─── 120 Ah — Innova Crysta diesel / Tempo / MUV ───────────────────────
+            // ═══════════════════════════════════════════════════════════════════════
+            // 120 Ah — Innova Crysta diesel / Tempo / MUV segment
+            // ═══════════════════════════════════════════════════════════════════════
             [
-                'name' => 'Exide MI-DIN120 120Ah', 'sku' => 'EX-MI-120',
-                'brand' => $exide, 'capacity_ah' => 120, 'warranty_months' => 55,
-                'price' => 15200, 'offer_price' => 13799, 'exchange_discount' => 1100,
-                'stock_quantity' => 15, 'is_featured' => true,
-                'short_description' => 'Exide 120Ah DIN120 — heavy-duty for Innova Crysta diesel, tempos, and large MUVs.',
-                'fits' => 'Toyota Innova Crysta (diesel) · Tata Xenon · Mahindra Tempo · Force Traveller',
+                'name' => 'Exide Xpress XP880 120Ah',
+                'sku'  => 'EX-XP880',
+                'brand' => $exide, 'capacity_ah' => 120, 'warranty_months' => 42,
+                'price' => 13821, 'offer_price' => 11199, 'exchange_discount' => 700,
+                'stock_quantity' => 12, 'is_featured' => true,
+                'short_description' => 'Exide Xpress 120Ah — heavy-duty for Innova Crysta diesel, tempos and large MUVs.',
+                'fits' => 'Toyota Innova Crysta (diesel) · Tata Xenon · Force Traveller · Mahindra Tempo',
             ],
             [
-                'name' => 'Amaron Hi-Life 120Ah (DIN120)', 'sku' => 'AM-HL-120',
-                'brand' => $amaron, 'capacity_ah' => 120, 'warranty_months' => 55,
-                'price' => 14900, 'offer_price' => 13499, 'exchange_discount' => 1100,
-                'stock_quantity' => 15, 'is_featured' => false,
-                'short_description' => 'Amaron 120Ah DIN120 — 55-month warranty, heavy-duty MUV/tempo battery.',
-                'fits' => 'Toyota Innova Crysta · Tata Xenon · Mahindra Tempo · Force Traveller',
-            ],
-            [
-                'name' => 'SF Sonic FSF0-DIN120 120Ah', 'sku' => 'SF-DIN-120',
-                'brand' => $sfSonic, 'capacity_ah' => 120, 'warranty_months' => 48,
-                'price' => 14400, 'offer_price' => 12999, 'exchange_discount' => 1000,
-                'stock_quantity' => 12, 'is_featured' => false,
-                'short_description' => 'SF Sonic 120Ah DIN120 — value pick for Innova Crysta and tempos.',
-                'fits' => 'Toyota Innova Crysta · Tata Xenon · Force Traveller',
-            ],
-            [
-                'name' => 'Luminous Car Batz 120Ah', 'sku' => 'LM-CB-120',
-                'brand' => $luminous, 'capacity_ah' => 120, 'warranty_months' => 48,
-                'price' => 13900, 'offer_price' => 12499, 'exchange_discount' => 1000,
-                'stock_quantity' => 12, 'is_featured' => false,
-                'short_description' => 'Luminous 120Ah — durable MUV/tempo battery.',
-                'fits' => 'Toyota Innova Crysta · Tata Xenon · Mahindra Tempo',
-            ],
-            [
-                'name' => 'Bosch S5 120Ah', 'sku' => 'BO-S5-120',
-                'brand' => $bosch, 'capacity_ah' => 120, 'warranty_months' => 60,
-                'price' => 15700, 'offer_price' => 14199, 'exchange_discount' => 1200,
+                'name' => 'Amaron Hi-Way 120Ah DIN120',
+                'sku'  => 'AM-HW-DIN120',
+                'brand' => $amaron, 'capacity_ah' => 120, 'warranty_months' => 42,
+                'price' => 15900, 'offer_price' => 12899, 'exchange_discount' => 700,
                 'stock_quantity' => 10, 'is_featured' => false,
-                'short_description' => 'Bosch S5 120Ah — premium silver-calcium heavy-duty battery, 60-month warranty.',
-                'fits' => 'Toyota Innova Crysta · Force Traveller · Tempo Traveller · Mercedes Sprinter',
+                'short_description' => 'Amaron Hi-Way 120Ah — commercial-grade battery for MUVs and tempos.',
+                'fits' => 'Toyota Innova Crysta · Force Traveller · Tempo Traveller · Mahindra Tempo',
             ],
         ];
 
-        // Retire any product not in the canonical SKU list
+        // Retire any product not in the canonical SKU list.
+        // Clean up child rows first; if FK-blocked by orders, deactivate + rename slug/sku.
         $canonical = array_column($products, 'sku');
         foreach (Product::whereNotIn('sku', $canonical)->get() as $stale) {
             ProductImage::where('product_id', $stale->id)->delete();
@@ -305,11 +187,11 @@ class ProductSeeder extends Seeder
 
         foreach ($products as $data) {
             if (! $data['brand']) {
-                continue; // brand not seeded — skip gracefully
+                continue;
             }
 
             $description = sprintf(
-                '<p>%s</p><p><strong>Fits:</strong> %s.</p><p>Genuine product with full manufacturer warranty. Free doorstep delivery in Mumbai, Thane and Navi Mumbai. Old battery exchange discount applied on delivery.</p>',
+                '<p>%s</p><p><strong>Fits:</strong> %s.</p><p>Genuine authorised-dealer product. Full manufacturer warranty. Free doorstep delivery in Mumbai, Thane and Navi Mumbai. Old battery exchange discount applied on delivery.</p>',
                 $data['short_description'],
                 $data['fits'],
             );
@@ -364,9 +246,9 @@ class ProductSeeder extends Seeder
             }
         }
 
-        // Fitments — every car product attaches to every car variant
-        $carProducts  = Product::whereHas('category', fn ($q) => $q->where('slug', 'car-batteries'))->get();
-        $carVariants  = VehicleVariant::whereHas('vehicleModel.vehicleType', fn ($q) => $q->where('slug', 'car'))->get();
+        // Fitments — every car product attaches to every car variant seeded
+        $carProducts = Product::whereHas('category', fn ($q) => $q->where('slug', 'car-batteries'))->get();
+        $carVariants = VehicleVariant::whereHas('vehicleModel.vehicleType', fn ($q) => $q->where('slug', 'car'))->get();
 
         foreach ($carProducts as $product) {
             foreach ($carVariants as $variant) {

@@ -37,8 +37,8 @@ class DeliveryController extends Controller
             'delivery_charge' => (float) $row->delivery_charge,
             'expected_delivery_days' => (int) $row->expected_delivery_days,
             'message' => $row->expected_delivery_days <= 1
-                ? 'Same-day or next-day delivery available.'
-                : "Delivery in {$row->expected_delivery_days} business days.",
+                ? sprintf('Same or next-day delivery to %s. Charge: ₹%d.', $row->city, (int) $row->delivery_charge)
+                : sprintf('Delivery to %s in %d business days. Charge: ₹%d.', $row->city, $row->expected_delivery_days, (int) $row->delivery_charge),
         ]);
     }
 }
