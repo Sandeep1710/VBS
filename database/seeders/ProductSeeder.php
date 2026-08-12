@@ -29,32 +29,24 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // Vehicle-type categories (see CategorySeeder). Products are assigned
-        // based on capacity + Exide series (CV series always → commercial).
-        $hatchback  = Category::where('slug', 'hatchback-batteries')->first();
-        $sedan      = Category::where('slug', 'sedan-batteries')->first();
-        $suv        = Category::where('slug', 'suv-batteries')->first();
-        $commercial = Category::where('slug', 'muv-commercial-batteries')->first();
+        // Vehicle-class categories (see CategorySeeder).
+        $car   = Category::where('slug', 'car-batteries')->first();
+        $tempo = Category::where('slug', 'tempo-batteries')->first();
+        // Bike + Truck categories exist but are inactive — no products yet.
 
         $exide  = BatteryBrand::where('slug', 'exide')->first();
         $amaron = BatteryBrand::where('slug', 'amaron')->first();
         // SF Sonic retired — see BatteryBrandSeeder
 
         /**
-         * Given a product's capacity + SKU, return the right vehicle-type category.
-         * The Exide XP series (Xpress) is commercial-vehicle-focused regardless
-         * of capacity, so 100Ah XP800 goes to commercial not SUV.
+         * Assign category by vehicle class:
+         *   - Exide Xpress (XP series) + Amaron Hi-Way (HW) = commercial → Tempo
+         *   - Everything else (44-100Ah personal-car batteries) → Car
          */
-        $categoryFor = function (int $ah, string $sku) use ($hatchback, $sedan, $suv, $commercial) {
-            // Commercial: Exide Xpress (XP), Amaron Hi-Way (HW), or anything > 100Ah
-            if (str_starts_with($sku, 'EX-XP') || str_starts_with($sku, 'AM-HW')) return $commercial;
-            if ($ah > 100) return $commercial;
-            // Hatchback: small cars 44-55Ah
-            if ($ah <= 55) return $hatchback;
-            // Sedan: mid cars 65-66Ah + premium 74Ah (Honda City / Verna use both)
-            if ($ah <= 66 || $ah == 74) return $sedan;
-            // SUV: 70, 75, 80, 90, 100Ah (Duster, Creta, Innova, Fortuner, Endeavour)
-            return $suv;
+        $categoryFor = function (int $ah, string $sku) use ($car, $tempo) {
+            if (str_starts_with($sku, 'EX-XP') || str_starts_with($sku, 'AM-HW')) return $tempo;
+            if ($ah > 100) return $tempo;
+            return $car;
         };
 
         $products = [

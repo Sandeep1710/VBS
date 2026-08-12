@@ -10,32 +10,27 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        // Tuple: [name, description, icon-hint, is_featured, is_active]
+        // Tuple: [name, description, is_featured, is_active]
         $cats = [
-            // 4 vehicle-type categories — what customers actually think in
-            [
-                'Hatchback Batteries',
-                'Batteries for compact hatchbacks and small cars — Swift, Alto, i10, Wagon R, Baleno, Etios.',
-                true, true,
-            ],
-            [
-                'Sedan Batteries',
-                'Batteries for mid-size sedans — Honda City, Hyundai Verna, Skoda Rapid, VW Vento, Maruti Ciaz.',
-                true, true,
-            ],
-            [
-                'SUV Batteries',
-                'Batteries for SUVs — Creta, Seltos, Duster, Nexon, Innova, Fortuner, Endeavour, XUV500.',
-                true, true,
-            ],
-            [
-                'MUV & Commercial Batteries',
-                'Heavy-duty batteries for Innova Crysta diesel, tempo, Bolero pickups, Force Traveller and MUVs.',
-                true, true,
-            ],
-            // Legacy categories — inactive but kept in DB for future
-            ['Car Batteries', 'Legacy — use the vehicle-type categories above.', false, false],
-            ['Bike Batteries', 'Two-wheeler batteries — coming soon.', false, false],
+            // 4 vehicle-class categories
+            ['Car Batteries',
+             'Batteries for personal cars — hatchbacks, sedans and SUVs.',
+             true, true],
+            ['Bike Batteries',
+             'Two-wheeler batteries for motorcycles and scooters. Coming soon.',
+             false, false],
+            ['Tempo Batteries',
+             'Heavy-duty batteries for tempos, MUVs and small commercial vehicles — Innova Crysta diesel, Tempo Traveller, Bolero Pickup.',
+             true, true],
+            ['Truck Batteries',
+             'High-capacity batteries for trucks and heavy commercial vehicles. Coming soon.',
+             false, false],
+
+            // Legacy categories — kept in DB but inactive
+            ['Hatchback Batteries',           'Legacy — merged into Car Batteries.',           false, false],
+            ['Sedan Batteries',               'Legacy — merged into Car Batteries.',           false, false],
+            ['SUV Batteries',                 'Legacy — merged into Car Batteries.',           false, false],
+            ['MUV & Commercial Batteries',    'Legacy — split into Tempo and Truck.',          false, false],
         ];
 
         foreach ($cats as $i => [$name, $desc, $featured, $active]) {
