@@ -235,15 +235,19 @@
                 </div>
                 <a href="{{ url('/products') }}" class="hidden text-sm font-semibold text-brand-600 hover:text-brand-700 sm:inline">View all →</a>
             </div>
+            {{-- Mobile: swipeable scroll-snap carousel. sm+: original grid. --}}
             <div @class([
-                'mt-6 grid gap-5',
+                'no-scrollbar -mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2',
+                'sm:mx-0 sm:grid sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0',
                 'sm:grid-cols-2 lg:grid-cols-4' => $fpCount >= 4,
-                'mx-auto max-w-5xl sm:grid-cols-2 lg:grid-cols-3' => $fpCount === 3,
-                'mx-auto max-w-3xl sm:grid-cols-2' => $fpCount === 2,
-                'mx-auto max-w-sm' => $fpCount === 1,
+                'sm:mx-auto sm:max-w-5xl sm:grid-cols-2 lg:grid-cols-3' => $fpCount === 3,
+                'sm:mx-auto sm:max-w-3xl sm:grid-cols-2' => $fpCount === 2,
+                'sm:mx-auto sm:max-w-sm' => $fpCount === 1,
             ])>
                 @foreach($featuredProducts as $product)
-                    <x-product-card :product="$product" />
+                    <div class="w-[78%] shrink-0 snap-start sm:w-auto">
+                        <x-product-card :product="$product" />
+                    </div>
                 @endforeach
             </div>
         </section>
@@ -306,9 +310,10 @@
                 <p class="text-xs font-bold uppercase tracking-widest text-brand-600">Customer love</p>
                 <h2 class="mt-2 text-2xl font-extrabold text-ink-900 sm:text-3xl">Trusted by Mumbai customers</h2>
             </div>
-            <div class="mt-8 grid gap-5 md:grid-cols-3">
+            {{-- Mobile: swipeable scroll-snap carousel. md+: original 3-column grid. --}}
+            <div class="no-scrollbar -mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:gap-5 md:overflow-visible md:px-0 md:pb-0 md:grid-cols-3">
                 @foreach($testimonials->take(3) as $t)
-                    <div class="card p-5 transition-transform hover:-translate-y-1">
+                    <div class="card w-[85%] shrink-0 snap-start p-5 transition-transform hover:-translate-y-1 md:w-auto">
                         <div class="flex gap-0.5 text-amber-500">
                             @for($i = 0; $i < $t->rating; $i++)
                                 <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">

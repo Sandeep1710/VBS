@@ -89,4 +89,13 @@
     .container-page {
         @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
     }
+
+    /* Hides the scrollbar on mobile swipe carousels while keeping them scrollable. */
+    .no-scrollbar {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
 }

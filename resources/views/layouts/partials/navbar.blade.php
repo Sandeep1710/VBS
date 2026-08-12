@@ -107,7 +107,7 @@
             @endphp
             <div class="flex gap-2 px-2 py-3">
                 <a href="tel:{{ $phoneTel }}" class="flex-1 rounded-lg bg-brand-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-brand-700">
-                    📞 Call {{ $phone }}
+                    📞 Call
                 </a>
                 <a href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener" class="flex-1 rounded-lg bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-green-700">
                     💬 WhatsApp
