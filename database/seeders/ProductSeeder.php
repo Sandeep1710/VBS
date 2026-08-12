@@ -36,6 +36,78 @@ class ProductSeeder extends Seeder
 
         $products = [
             // ═══════════════════════════════════════════════════════════════════════
+            // 44 Ah — Small hatchbacks (WagonR, Datsun, small compacts)
+            // ═══════════════════════════════════════════════════════════════════════
+            [
+                'name' => 'Exide Mileage MLDIN44 44Ah',
+                'sku'  => 'EX-MLDIN44',
+                'brand' => $exide, 'capacity_ah' => 44, 'warranty_months' => 60,
+                'price' => 6499, 'offer_price' => null, 'exchange_discount' => 400,
+                'stock_quantity' => 20, 'is_featured' => false,
+                'short_description' => 'Exide Mileage 44Ah DIN44 — reliable low-maintenance battery for small hatchbacks. 60-month warranty (30+30).',
+                'fits' => 'Maruti Wagon R · Datsun Redi-Go · Renault Triber · Datsun GO · small compacts',
+            ],
+
+            // ═══════════════════════════════════════════════════════════════════════
+            // 45 Ah — Compact cars (Swift, i10, Baleno, Kwid Climber)
+            // ═══════════════════════════════════════════════════════════════════════
+            [
+                'name' => 'Amaron Hi-Life 45Ah',
+                'sku'  => 'AM-HL-45',
+                'brand' => $amaron, 'capacity_ah' => 45, 'warranty_months' => 60,
+                'price' => 5999, 'offer_price' => null, 'exchange_discount' => 400,
+                'stock_quantity' => 25, 'is_featured' => true,
+                'short_description' => 'Amaron Hi-Life 45Ah — proven long-life battery for compact hatchbacks and small sedans.',
+                'fits' => 'Maruti Swift · Hyundai Grand i10 · Ford Figo · Renault Kwid Climber · Nissan Micra',
+            ],
+
+            [
+                'name' => 'Exide Mileage ML45D21LBH 45Ah',
+                'sku'  => 'EX-ML45D21LBH',
+                'brand' => $exide, 'capacity_ah' => 45, 'warranty_months' => 60,
+                'price' => 6499, 'offer_price' => null, 'exchange_discount' => 400,
+                'stock_quantity' => 20, 'is_featured' => false,
+                'short_description' => 'Exide Mileage 45Ah (JIS ML45D21) — 60-month warranty option for compact cars.',
+                'fits' => 'Maruti Swift · Hyundai Grand i10 · Ford Figo · Nissan Micra · Kwid Climber',
+            ],
+
+            // ═══════════════════════════════════════════════════════════════════════
+            // 55 Ah — Mid hatchbacks / compact sedans
+            // ═══════════════════════════════════════════════════════════════════════
+            [
+                'name' => 'Exide Mileage MLDIN55 55Ah',
+                'sku'  => 'EX-MLDIN55',
+                'brand' => $exide, 'capacity_ah' => 55, 'warranty_months' => 60,
+                'price' => 7999, 'offer_price' => null, 'exchange_discount' => 450,
+                'stock_quantity' => 20, 'is_featured' => true,
+                'short_description' => 'Exide Mileage 55Ah DIN55 — mid-range workhorse for Baleno, Etios, Tigor segment.',
+                'fits' => 'Maruti Baleno · Toyota Etios · Hyundai Xcent · Tata Tigor · Hyundai i20',
+            ],
+
+            // ═══════════════════════════════════════════════════════════════════════
+            // 65 Ah — Mid sedans (City, Verna, Ciaz, Rapid, Vento)
+            // ═══════════════════════════════════════════════════════════════════════
+            [
+                'name' => 'Amaron Hi-Life DIN65 65Ah',
+                'sku'  => 'AM-HL-DIN65',
+                'brand' => $amaron, 'capacity_ah' => 65, 'warranty_months' => 60,
+                'price' => 7499, 'offer_price' => null, 'exchange_discount' => 500,
+                'stock_quantity' => 20, 'is_featured' => false,
+                'short_description' => 'Amaron Hi-Life 65Ah DIN65 — dependable battery for mid-size sedans with 60-month warranty.',
+                'fits' => 'Honda City · Hyundai Verna · Skoda Rapid · VW Vento · Maruti Ciaz',
+            ],
+
+            [
+                'name' => 'Exide Mileage MLDIN66 66Ah',
+                'sku'  => 'EX-MLDIN66',
+                'brand' => $exide, 'capacity_ah' => 66, 'warranty_months' => 60,
+                'price' => 7999, 'offer_price' => null, 'exchange_discount' => 500,
+                'stock_quantity' => 20, 'is_featured' => false,
+                'short_description' => 'Exide Mileage 66Ah DIN66 — 60-month warranty option for mid-size sedans.',
+                'fits' => 'Honda City · Hyundai Verna · Skoda Rapid · VW Vento · Maruti Ciaz',
+            ],
+
+            // ═══════════════════════════════════════════════════════════════════════
             // 70 Ah — Compact SUVs / mid-large sedans
             // ═══════════════════════════════════════════════════════════════════════
             [

@@ -1,0 +1,131 @@
+MAXIMUM RECOMMENDED CONSUMER PRICE LIST
+
+                  Applicable for All States & Union Territories as on 10th June 2026
+
+                       VEHICULAR & 2-WHEELER BATTERIES
+
+Ah  Product Code  Warranty         Maximum                            Ah       Product Code                    Warranty                  Maximum
+                                Recommended                                                                                           Recommended
+                            Consumer Prices (Rs.)                                                                                 Consumer Prices (Rs.)
+
+    CAR/SUV: 4W SERIES 72: 72M WARRANTY                                        CV: TRUCKER SERIES 42: 42M WARRANTY
+
+35 72S-35R/L      36F+36P                4,935                        80 42S-80R                               24F+18P            8,013
+
+45 72S-55LS       36F+36P                8,299                        88 42S-88L                               24F+18P            8,677
+
+74 72S-DIN74L     36F+36P                12,592                       100 42S-100R                             24F+18P            10,085
+
+100 72S-DIN100L   36F+36P                20,873                       100 42S-100H29R                          24F+18P            9,558
+
+                                                                      120 42S-120R                             24F+18P            12,917
+
+    CAR/SUV: 4W SERIES 66: 66M WARRANTY                               130 42S-130R                             24F+18P            12,605
+
+35 66S-38B20R/L   30F+36P                4,610                        150 42S-150R                             24F+18P            16,280
+
+40 66S-40LBH/RBH  30F+36P                5,384                        180 42S-180R                             24F+18P            18,455
+
+    CAR/SUV: 4W SERIES 60: 60M WARRANTY                                        TRACTOR: TRACTOR SERIES 42: 42M WARRANTY
+
+(also applicable for 4W SERIES 55 with enhanced 60M Warranty)         75 42S-75R/RFT                           24F+18P            7,931
+
+44 60S-DIN44R/LH  30F+30P                6,674                        88 42S-TR88L                             24F+18P            8,877
+
+45 60S-45LBH      30F+30P                7,365                        90 42S-90H29L/R                          24F+18P            8,552
+
+50 60S-DIN50L     30F+30P                7,439                        100 42S-100L                             24F+18P            9,924
+
+54 60S-55D23L     30F+30P                7,562
+
+55 60S-DIN55R/L   30F+30P                8,514                                 CV: TRUCKER SERIES 36: 36M WARRANTY
+
+60 60S-DIN60L     30F+30P                8,693                        75 36EWS-80R/L                           18F+18P            7,437
+
+66 60S-DIN66      30F+30P                8,704                        100 36EWS-100R/L                         18F+18P            8,703
+
+68 60S-75D23LBH   30F+30P                7,954                        130 36EWS-130R                           18F+18P            11,817
+
+72 60S-85D26R     30F+30P                9,940                        150 36EWS-150R                           18F+18P            13,616
+
+80 60S-DIN80L     30F+30P                12,696
+
+                                                                               TRACTOR: TRACTOR SERIES 36: 36M WARRANTY
+
+    CAR/SUV: HYBRID X: 60M WARRANTY                                   90 36EWS-90R/L                           18F+18P            8,047
+
+38 HX-M42         30F+30P                5,932
+
+45 HX-N55         30F+30P                7,769                                                   2WL: 2W SERIES 48: 48M WARRANTY
+
+70 HX-DIN70       30F+30P                10,360                       2.5 48S-TZ2.5L                           24F+24P            1,053
+                                                                                                                                  1,198
+                                                                      4        48S-TZ4A                        24F+24P            1,432
+                                                                                                                                  1,564
+    CAR/SUV: HYBRID X: 48M WARRANTY                                   5        48S-TZ5A                        24F+24P            1,567
+                                                                                                                                  1,842
+47 HXDIN47RMFEFB  24F+24P                6,842                        5        48S-TZ5L-B                      24F+24P            1,592
+                                                                                                                                  2,230
+52 HXDIN52RMFEFB  24F+24P                7,167                        5        48S-TZ6                         24F+24P            2,306
+                                                                                                                                  3,435
+78 HXDIN78LMFEFB  24F+24P                10,396                       6        48S-TZ7                         24F+24P            3,872
+
+                                                                      7        48S-T7B-B                       24F+24P
+
+    CAR/SUV: 4W SERIES 48: 48M WARRANTY                               9        48S-TZ9                         24F+24P
+
+(also applicable for 4W SERIES 44 with enhanced 48M Warranty)         9        48S-TZ9-B                       24F+24P
+
+33 48S-36B19L     24F+24P                4,114                        12 48S-TX14                              24F+24P
+
+35 48S-38B20L/R   24F+24P                4,430                        14 48S-14L-A2                            24F+24P
+
+65 48S-70R/L      24F+24P                8,118
+
+65 48S-70RF/LF    24F+24P                8,118                                                   E-RICKSHAW: VAAHAK TUBULAR
+
+65 48S-80D26R     24F+24P                8,608                        135 12S-2300TL                           12F                11,910
+                                                                                                                                  14,502
+68 48S-80D23R     24F+24P                8,586                        150 15S-2700TL                           15F
+
+85 48S-105D31R/L  24F+24P                8,747
+
+                                                                                                 E-RICKSHAW: VAAHAK FLAT
+
+    CAR/SUV: 4W SERIES 36: 36M WARRANTY                               100 6S-1500L                             6F                 9,156
+                                                                                                                                  9,614
+65 36S-700RF/LF   18F+18P                7,425                        100 7S-1600L                             7F                 10,871
+
+                                                                      120 9S-1800L                             9F
+
+    3WL/LCV: AUTORIDER SERIES 24: 24M WARRANTY
+
+(also applicable for AUTORIDER SERIES 18 with enhanced 24M Warranty)           E-RICKSHAW: NEXCHARGE LiTHIUM ION BATTERY
+
+32 24S-32R        24F                    3,646                        100 ( 51.2V ) FLC8-SFNXLIB51V3Y          36M FOC            75,000
+
+35 24S-40L        24F                    4,181
+
+60 24S-60L/R      24F                    6,126                                 E-RICKSHAW: LiTHIUM ION BATTERY CHARGER
+
+                                                                      48V,25A                    131115102001  24M FOC            7,750
+
+    3WL/LCV: AUTORIDER SERIES 12: 12M WARRANTY
+
+50 12S-600L       12F                    5,215                                                   DM WATER : PRO LIFE
+
+                                                                      5 LTR AJDMWATER-5L                       NA                 162
+
+Notes: [1] Price List No.EIL/SF AUTO-VEH/MRCP_AI/25-26/07 dated 10th June 2026 supersedes earlier Price List No.EIL/SF AUTO-
+        VEH/MRCP_AI/25-26//06 dated 1st June 2026. [2] This Price list is subject to alteration or withdrawal without prior notice.
+
+                              [3] Prices are inclusive of GST. [4] Prices are for batteries Dry Charged & Fully Charged.
+
+    Name                   Prepared By                                 Approved By                                    Issued By
+                           Nuzhat Mulla                               Uttio Majumdar                           Rohit Elisha Pandey
+
+    Signature
+
+    Date                    10/06/2026                                               10/06/2026                10/06/2026
+                                                                      Page 1 of 1
+
