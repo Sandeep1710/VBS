@@ -131,11 +131,43 @@
             </details>
 
             @if($products->isEmpty())
+                @php
+                    // "Coming soon" = whole category is empty (not just a filtered-down view).
+                    // Any active filter → treat it as a filter-mismatch instead.
+                    $comingSoon = isset($currentCategory)
+                        && $currentCategory->products()->where('is_active', true)->count() === 0;
+                    $phone    = \App\Models\Setting::get('support_phone', '+91 9920971479');
+                    $whatsapp = \App\Models\Setting::get('whatsapp_number', '+919920971479');
+                @endphp
                 <x-card>
-                    <div class="p-12 text-center">
-                        <p class="text-sm text-ink-600">No batteries match your filters.</p>
-                        <a href="{{ url()->current() }}" class="mt-3 inline-flex btn btn-primary">Clear filters</a>
-                    </div>
+                    @if($comingSoon)
+                        <div class="p-10 text-center sm:p-12">
+                            <span class="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-amber-700">
+                                Coming soon
+                            </span>
+                            <h2 class="mt-4 text-lg font-bold text-ink-900 sm:text-xl">
+                                We're stocking {{ strtolower($currentCategory->name) }} shortly.
+                            </h2>
+                            <p class="mx-auto mt-2 max-w-md text-sm text-ink-600">
+                                Need one urgently? Call or WhatsApp us with your vehicle details — we'll arrange it from our distributor and confirm the price + delivery date.
+                            </p>
+                            <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+                                <a href="tel:{{ $phone }}" class="btn btn-primary">
+                                    Call {{ $phone }}
+                                </a>
+                                <a href="https://wa.me/{{ preg_replace('/\D/', '', $whatsapp) }}?text=Hi%2C%20I%20need%20a%20{{ urlencode($currentCategory->name) }}%20for%20my%20vehicle."
+                                   target="_blank" rel="noopener"
+                                   class="btn btn-secondary">
+                                    WhatsApp us
+                                </a>
+                            </div>
+                        </div>
+                    @else
+                        <div class="p-12 text-center">
+                            <p class="text-sm text-ink-600">No batteries match your filters.</p>
+                            <a href="{{ url()->current() }}" class="mt-3 inline-flex btn btn-primary">Clear filters</a>
+                        </div>
+                    @endif
                 </x-card>
             @else
                 <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

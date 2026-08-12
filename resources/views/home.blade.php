@@ -174,15 +174,31 @@
                 'mx-auto max-w-md grid-cols-2' => $catCount === 2,
                 'mx-auto max-w-[220px] grid-cols-1' => $catCount === 1,
             ])>
+                @php
+                    // Per-category SVG paths so each tile is visually distinct
+                    $catIcons = [
+                        'car-batteries'   => 'M5 16l1.5-4.5A2 2 0 0 1 8.4 10h7.2a2 2 0 0 1 1.9 1.5L19 16M5 16h14M5 16v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2M16 16v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2',
+                        'bike-batteries'  => 'M5 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM19 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8 14l3-6h4l3 6M11 8h4',
+                        'tempo-batteries' => 'M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
+                        'truck-batteries' => 'M2 7h13v9H2zM15 10h4l3 3v3h-7zM6 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
+                    ];
+                    $defaultIcon = 'M7 4h10a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a1 1 0 0 1 1-1Z';
+                @endphp
                 @foreach($categories as $cat)
+                    @php $empty = (int) ($cat->products_count ?? 0) === 0; @endphp
                     <a href="{{ route('categories.show', $cat) }}"
-                       class="group card flex flex-col items-center gap-2 p-4 text-center transition-all hover:-translate-y-1 hover:shadow-md">
-                        <div class="grid h-14 w-14 place-items-center rounded-xl bg-brand-100 text-brand-700 transition-transform group-hover:scale-110">
+                       class="group card relative flex flex-col items-center gap-2 p-4 text-center transition-all hover:-translate-y-1 hover:shadow-md">
+                        @if($empty)
+                            <span class="absolute right-2 top-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
+                                Coming soon
+                            </span>
+                        @endif
+                        <div class="grid h-14 w-14 place-items-center rounded-xl {{ $empty ? 'bg-ink-100 text-ink-500' : 'bg-brand-100 text-brand-700' }} transition-transform group-hover:scale-110">
                             <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="M7 4h10a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a1 1 0 0 1 1-1Z"/>
+                                <path d="{{ $catIcons[$cat->slug] ?? $defaultIcon }}"/>
                             </svg>
                         </div>
-                        <p class="text-xs font-bold text-ink-900 sm:text-sm">{{ $cat->name }}</p>
+                        <p class="text-xs font-bold {{ $empty ? 'text-ink-600' : 'text-ink-900' }} sm:text-sm">{{ $cat->name }}</p>
                     </a>
                 @endforeach
             </div>

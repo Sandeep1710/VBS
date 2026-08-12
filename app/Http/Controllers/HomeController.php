@@ -17,7 +17,12 @@ class HomeController extends Controller
     public function index(): View
     {
         $banners = Banner::active()->where('position', 'home_hero')->orderBy('sort_order')->get();
-        $categories = Category::where('is_active', true)->orderBy('sort_order')->limit(6)->get();
+        // Withcount so the homepage can tag empty categories as "Coming Soon"
+        $categories = Category::where('is_active', true)
+            ->withCount(['products' => fn ($q) => $q->where('is_active', true)])
+            ->orderBy('sort_order')
+            ->limit(6)
+            ->get();
         $featuredBrands = BatteryBrand::where('is_featured', true)->where('is_active', true)->orderBy('sort_order')->get();
         $featuredProducts = Product::active()->featured()->with('batteryBrand', 'primaryImage', 'category')->limit(8)->get();
         $bestSellers = Product::active()->orderByDesc('sales_count')->orderByDesc('rating_avg')->with('batteryBrand', 'primaryImage', 'category')->limit(4)->get();
