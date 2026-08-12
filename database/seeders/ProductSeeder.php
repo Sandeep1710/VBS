@@ -29,10 +29,33 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        $carCat = Category::where('slug', 'car-batteries')->first();
+        // Vehicle-type categories (see CategorySeeder). Products are assigned
+        // based on capacity + Exide series (CV series always → commercial).
+        $hatchback  = Category::where('slug', 'hatchback-batteries')->first();
+        $sedan      = Category::where('slug', 'sedan-batteries')->first();
+        $suv        = Category::where('slug', 'suv-batteries')->first();
+        $commercial = Category::where('slug', 'muv-commercial-batteries')->first();
+
         $exide  = BatteryBrand::where('slug', 'exide')->first();
         $amaron = BatteryBrand::where('slug', 'amaron')->first();
         // SF Sonic retired — see BatteryBrandSeeder
+
+        /**
+         * Given a product's capacity + SKU, return the right vehicle-type category.
+         * The Exide XP series (Xpress) is commercial-vehicle-focused regardless
+         * of capacity, so 100Ah XP800 goes to commercial not SUV.
+         */
+        $categoryFor = function (int $ah, string $sku) use ($hatchback, $sedan, $suv, $commercial) {
+            // Commercial: Exide Xpress (XP), Amaron Hi-Way (HW), or anything > 100Ah
+            if (str_starts_with($sku, 'EX-XP') || str_starts_with($sku, 'AM-HW')) return $commercial;
+            if ($ah > 100) return $commercial;
+            // Hatchback: small cars 44-55Ah
+            if ($ah <= 55) return $hatchback;
+            // Sedan: mid cars 65-66Ah + premium 74Ah (Honda City / Verna use both)
+            if ($ah <= 66 || $ah == 74) return $sedan;
+            // SUV: 70, 75, 80, 90, 100Ah (Duster, Creta, Innova, Fortuner, Endeavour)
+            return $suv;
+        };
 
         $products = [
             // ═══════════════════════════════════════════════════════════════════════
@@ -272,7 +295,7 @@ class ProductSeeder extends Seeder
                 ['sku' => $data['sku']],
                 [
                     'battery_brand_id'    => $data['brand']->id,
-                    'category_id'         => $carCat?->id,
+                    'category_id'         => $categoryFor((int) $data['capacity_ah'], $data['sku'])?->id,
                     'name'                => $data['name'],
                     'slug'                => Str::slug($data['name']),
                     'capacity_ah'         => $data['capacity_ah'],
@@ -327,7 +350,9 @@ class ProductSeeder extends Seeder
         }
 
         // Fitments — every car product attaches to every car variant seeded
-        $carProducts = Product::whereHas('category', fn ($q) => $q->where('slug', 'car-batteries'))->get();
+        // All active products count as "car products" for fitment purposes
+        // (all our vehicle-type categories are variants of car batteries).
+        $carProducts = Product::where('is_active', true)->get();
         $carVariants = VehicleVariant::whereHas('vehicleModel.vehicleType', fn ($q) => $q->where('slug', 'car'))->get();
 
         foreach ($carProducts as $product) {
