@@ -16,15 +16,17 @@ class CategorySeeder extends Seeder
             ['Car Batteries',
              'Batteries for personal cars — hatchbacks, sedans and SUVs.',
              true, true],
+            // Homepage now uses "Shop by Brand" — vehicle categories still exist
+            // for admin/filter use, but Bike + Truck stay inactive until stocked.
             ['Bike Batteries',
-             'Two-wheeler batteries for motorcycles and scooters. Coming soon — call us if you need one urgently.',
-             true, true],
+             'Two-wheeler batteries for motorcycles and scooters. Coming soon.',
+             false, false],
             ['Tempo Batteries',
              'Heavy-duty batteries for tempos, MUVs and small commercial vehicles — Innova Crysta diesel, Tempo Traveller, Bolero Pickup.',
              true, true],
             ['Truck Batteries',
-             'High-capacity batteries for trucks and heavy commercial vehicles. Coming soon — call us if you need one urgently.',
-             true, true],
+             'High-capacity batteries for trucks and heavy commercial vehicles. Coming soon.',
+             false, false],
 
             // Legacy categories — kept in DB but inactive
             ['Hatchback Batteries',           'Legacy — merged into Car Batteries.',           false, false],

@@ -154,51 +154,44 @@
         </section>
     @endif
 
-    {{-- ============ SHOP BY CATEGORY ============ --}}
-    @if($categories->isNotEmpty())
-        @php $catCount = $categories->count(); @endphp
+    {{-- ============ SHOP BY BRAND ============ --}}
+    @if(!empty($shopBrands) && $shopBrands->isNotEmpty())
         <section class="mt-10">
             <div class="flex items-end justify-between">
                 <div>
                     <p class="text-xs font-bold uppercase tracking-widest text-brand-600">Shop by</p>
-                    <h2 class="mt-1 text-xl font-extrabold text-ink-900 sm:text-2xl">Battery categories</h2>
+                    <h2 class="mt-1 text-xl font-extrabold text-ink-900 sm:text-2xl">Brand</h2>
+                    <p class="mt-1 text-sm text-ink-600">Pick your preferred brand — we stock both.</p>
                 </div>
-                <a href="{{ url('/products') }}" class="hidden text-sm font-semibold text-brand-600 hover:text-brand-700 sm:inline">View all →</a>
+                <a href="{{ url('/products') }}" class="hidden text-sm font-semibold text-brand-600 hover:text-brand-700 sm:inline">View all batteries →</a>
             </div>
-            <div @class([
-                'mt-5 grid gap-4',
-                'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6' => $catCount >= 6,
-                'mx-auto max-w-5xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-5' => $catCount === 5,
-                'mx-auto max-w-3xl grid-cols-2 lg:grid-cols-4' => $catCount === 4,
-                'mx-auto max-w-2xl grid-cols-2 sm:grid-cols-3' => $catCount === 3,
-                'mx-auto max-w-md grid-cols-2' => $catCount === 2,
-                'mx-auto max-w-[220px] grid-cols-1' => $catCount === 1,
-            ])>
-                @php
-                    // Per-category SVG paths so each tile is visually distinct
-                    $catIcons = [
-                        'car-batteries'   => 'M5 16l1.5-4.5A2 2 0 0 1 8.4 10h7.2a2 2 0 0 1 1.9 1.5L19 16M5 16h14M5 16v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2M16 16v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2',
-                        'bike-batteries'  => 'M5 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM19 17a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8 14l3-6h4l3 6M11 8h4',
-                        'tempo-batteries' => 'M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
-                        'truck-batteries' => 'M2 7h13v9H2zM15 10h4l3 3v3h-7zM6 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z',
-                    ];
-                    $defaultIcon = 'M7 4h10a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a1 1 0 0 1 1-1Z';
-                @endphp
-                @foreach($categories as $cat)
-                    @php $empty = (int) ($cat->products_count ?? 0) === 0; @endphp
-                    <a href="{{ route('categories.show', $cat) }}"
-                       class="group card relative flex flex-col items-center gap-2 p-4 text-center transition-all hover:-translate-y-1 hover:shadow-md">
-                        @if($empty)
-                            <span class="absolute right-2 top-2 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-700">
-                                Coming soon
-                            </span>
-                        @endif
-                        <div class="grid h-14 w-14 place-items-center rounded-xl {{ $empty ? 'bg-ink-100 text-ink-500' : 'bg-brand-100 text-brand-700' }} transition-transform group-hover:scale-110">
-                            <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                <path d="{{ $catIcons[$cat->slug] ?? $defaultIcon }}"/>
-                            </svg>
+            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                @foreach($shopBrands as $brand)
+                    <a href="{{ route('brands.show', $brand) }}"
+                       class="group card flex items-center gap-4 p-5 transition-all hover:-translate-y-0.5 hover:shadow-md sm:p-6">
+                        {{-- Brand mark: real logo if available, initial fallback --}}
+                        <div class="grid h-20 w-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-white ring-1 ring-ink-100 sm:h-24 sm:w-24">
+                            @if($brand->logo)
+                                <img src="{{ asset('storage/' . $brand->logo) }}"
+                                     alt="{{ $brand->name }} logo"
+                                     class="h-full w-full object-contain p-2">
+                            @else
+                                <span class="text-3xl font-extrabold text-brand-700">{{ strtoupper(substr($brand->name, 0, 1)) }}</span>
+                            @endif
                         </div>
-                        <p class="text-xs font-bold {{ $empty ? 'text-ink-600' : 'text-ink-900' }} sm:text-sm">{{ $cat->name }}</p>
+                        <div class="min-w-0 flex-1">
+                            <h3 class="text-lg font-extrabold text-ink-900 sm:text-xl">{{ $brand->name }}</h3>
+                            <p class="mt-1 text-sm text-ink-600">
+                                {{ $brand->products_count }} {{ Str::plural('battery', $brand->products_count) }}
+                                @if($brand->min_ah && $brand->max_ah)
+                                    &middot; {{ $brand->min_ah }}–{{ $brand->max_ah }} Ah
+                                @endif
+                            </p>
+                            <p class="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 group-hover:text-brand-700">
+                                Browse {{ $brand->name }}
+                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                            </p>
+                        </div>
                     </a>
                 @endforeach
             </div>
