@@ -145,15 +145,27 @@
             </div>
 
             {{-- Price --}}
-            <div class="mt-6 rounded-xl bg-gradient-to-br from-slate-50 to-white p-5 ring-1 ring-ink-200">
+            @php
+                $basePrice     = (float) $product->effective_price;
+                $exchangeSaves = $product->exchange_available ? (float) $product->exchange_discount : 0;
+                $priceAfterEx  = max(0, $basePrice - $exchangeSaves);
+            @endphp
+            <div class="mt-6 rounded-xl bg-gradient-to-br from-slate-50 to-white p-5 ring-1 ring-ink-200"
+                 data-price-base="{{ $basePrice }}"
+                 data-price-with-exchange="{{ $priceAfterEx }}">
                 <div class="flex flex-wrap items-baseline gap-3">
-                    <span class="text-4xl font-extrabold text-ink-900">₹{{ number_format((float) $product->effective_price, 0) }}</span>
-                    @if($product->offer_price && (float) $product->price > (float) $product->offer_price)
-                        <span class="text-lg text-ink-400 line-through">₹{{ number_format((float) $product->price, 0) }}</span>
-                        <span class="badge bg-green-100 text-green-700">{{ $product->discount_percent }}% OFF</span>
+                    <span id="pdp-price" class="text-4xl font-extrabold text-ink-900">₹{{ number_format($basePrice, 0) }}</span>
+                    <span id="pdp-price-strike" class="hidden text-lg text-ink-400 line-through">₹{{ number_format($basePrice, 0) }}</span>
+                    @if($exchangeSaves > 0)
+                        <span id="pdp-exchange-chip" class="hidden badge bg-green-100 text-green-700">
+                            −₹{{ number_format($exchangeSaves, 0) }} exchange
+                        </span>
                     @endif
                 </div>
                 <p class="mt-1 text-xs text-ink-500">Inclusive of all taxes · Free delivery in Mumbai</p>
+                <p id="pdp-price-note" class="mt-1 hidden text-xs font-semibold text-green-700">
+                    Price after old battery exchange · final value confirmed at delivery
+                </p>
 
                 @if($product->in_stock)
                     <p class="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-green-700">
@@ -239,12 +251,46 @@
             {{-- Exchange offer --}}
             @if($product->exchange_available && (float) $product->exchange_discount > 0)
                 <label class="mt-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-green-300 bg-green-50 p-4">
-                    <input form="add-to-cart-form" type="checkbox" name="exchange_old_battery" value="1" class="mt-0.5 h-4 w-4 rounded border-green-400 text-green-600 focus:ring-green-500">
+                    <input id="pdp-exchange-toggle" form="add-to-cart-form" type="checkbox" name="exchange_old_battery" value="1" class="mt-0.5 h-4 w-4 rounded border-green-400 text-green-600 focus:ring-green-500">
                     <div>
-                        <p class="text-sm font-bold text-green-900">Exchange your old battery — save ₹{{ number_format((float) $product->exchange_discount, 0) }}</p>
-                        <p class="mt-1 text-xs leading-relaxed text-green-800">Hand over your dead battery when our technician delivers, and we'll deduct the exchange amount from the total.</p>
+                        <p class="text-sm font-bold text-green-900">
+                            Exchange your old battery — save up to ₹{{ number_format((float) $product->exchange_discount, 0) }}
+                        </p>
+                        <p class="mt-1 text-xs leading-relaxed text-green-800">
+                            Hand over your dead battery when our technician delivers and we'll deduct the exchange value from your total. Final value confirmed on-site — battery must be intact (no cracked case, terminals present).
+                        </p>
                     </div>
                 </label>
+                @push('head')
+                    <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const toggle = document.getElementById('pdp-exchange-toggle');
+                        const price  = document.getElementById('pdp-price');
+                        const strike = document.getElementById('pdp-price-strike');
+                        const chip   = document.getElementById('pdp-exchange-chip');
+                        const note   = document.getElementById('pdp-price-note');
+                        if (!toggle || !price) return;
+                        const priceBox     = price.closest('[data-price-base]');
+                        const basePrice    = parseFloat(priceBox.dataset.priceBase);
+                        const afterEx      = parseFloat(priceBox.dataset.priceWithExchange);
+                        const fmt = n => '₹' + Math.round(n).toLocaleString('en-IN');
+                        toggle.addEventListener('change', () => {
+                            if (toggle.checked) {
+                                price.textContent  = fmt(afterEx);
+                                strike.textContent = fmt(basePrice);
+                                strike.classList.remove('hidden');
+                                chip.classList.remove('hidden');
+                                note.classList.remove('hidden');
+                            } else {
+                                price.textContent = fmt(basePrice);
+                                strike.classList.add('hidden');
+                                chip.classList.add('hidden');
+                                note.classList.add('hidden');
+                            }
+                        });
+                    });
+                    </script>
+                @endpush
             @endif
 
             {{-- CTAs --}}
