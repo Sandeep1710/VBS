@@ -20,7 +20,14 @@ use Throwable;
  * (see storage/app/public/catalogs/):
  *   - Exide MRCP dated 1 June 2026
  *   - SF Batteries MRCP dated 10 June 2026
- * Amaron entries use street-price data from batterybhai.com (no public MRP).
+ *   - Amaron retail price list dated 15 Aug 2026
+ * Amaron products whose manufacturer code appears in the Amaron price list
+ * (574102069, 580112073, 600109087) carry that official retail price. The
+ * remaining Amaron entries — Hi-Life and the DIN120 Hi-Way — are not listed in
+ * it and still use street-price data from batterybhai.com.
+ *
+ * The full 106-SKU Amaron range lives in AmaronPriceListSeeder; this seeder
+ * holds only the curated products that carry capacity, warranty and fitment.
  *
  * Offer prices are set at typical Mumbai dealer/street discount (~20-30% off MRP).
  * Update via /admin/products once your distributor confirms wholesale pricing.
@@ -160,7 +167,7 @@ class ProductSeeder extends Seeder
                 'name' => 'Amaron Pro 574102069 74Ah',
                 'sku'  => 'AM-PR-574102069',
                 'brand' => $amaron, 'capacity_ah' => 74, 'warranty_months' => 66,
-                'price' => 9399, 'offer_price' => null, 'exchange_discount' => 550,
+                'price' => 10376, 'offer_price' => null, 'exchange_discount' => 550,
                 'stock_quantity' => 15, 'is_featured' => false,
                 'short_description' => 'Amaron Pro 74Ah — 66-month warranty (36+30), silver-alloy technology.',
                 'fits' => 'Honda City · Hyundai Verna · Skoda Rapid · VW Vento',
@@ -191,7 +198,7 @@ class ProductSeeder extends Seeder
                 'name' => 'Amaron FL-580112073 80Ah',
                 'sku'  => 'AM-FL-580112073',
                 'brand' => $amaron, 'capacity_ah' => 80, 'warranty_months' => 60,
-                'price' => 8999, 'offer_price' => null, 'exchange_discount' => 600,
+                'price' => 10358, 'offer_price' => null, 'exchange_discount' => 600,
                 'stock_quantity' => 25, 'is_featured' => true,
                 'short_description' => 'Amaron Hi-Way 80Ah — 60-month warranty (30+30), proven large-SUV battery.',
                 'fits' => 'Toyota Innova · Ford Endeavour · Mahindra XUV500 · Tata Safari',
@@ -222,7 +229,7 @@ class ProductSeeder extends Seeder
                 'name' => 'Amaron Pro 600109087 100Ah',
                 'sku'  => 'AM-PR-600109087',
                 'brand' => $amaron, 'capacity_ah' => 100, 'warranty_months' => 66,
-                'price' => 14999, 'offer_price' => null, 'exchange_discount' => 700,
+                'price' => 17027, 'offer_price' => null, 'exchange_discount' => 700,
                 'stock_quantity' => 12, 'is_featured' => true,
                 'short_description' => 'Amaron Pro 100Ah — 66-month warranty (36+30), premium SUV / diesel battery.',
                 'fits' => 'Toyota Fortuner · Ford Endeavour · Skoda Superb · MG Gloster',
