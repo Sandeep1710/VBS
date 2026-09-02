@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             BatteryBrandSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
+            AmaronPriceListSeeder::class,
             PincodeSeeder::class,
             CouponSeeder::class,
             BannerSeeder::class,

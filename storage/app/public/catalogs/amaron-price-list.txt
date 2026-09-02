@@ -1,0 +1,139 @@
+                    Amara Raja Energy & Mobility Limited - AMARON - After Market Price List with GST
+
+Ref. No. : AREML/AMARON/FY27/4W/RET/02
+Date : 15th Aug 2026
+
+       Battery Type                         Retailer Price (Rs.) wef    Battery Type        Retailer Price (Rs.) wef
+                                                      15.08.26                                        15.08.26
+
+       Amaron PRO                                                         AAM-BL-0BL400LMF          3340
+                                                                         AAM-BL-0BL400RMF           3340
+       AAM-PR-00050B20L                               4701                AAM-BL-BL00500RS          5701
+                                                                          AAM-BL-BL00500LS          5701
+       AAM-PR-00050B20R                               4701                AAM-BL-0BL700LMF          6255
+                                                                         AAM-BL-0BL700RMF           6255
+       AAM-PR-0055B24LS                               7058                AAM-BL-0BL800LMF          6366
+                                                                         AAM-BL-0BL800RMF           6366
+       AAM-PR-574102069                               10376               AAM-BL-BL880D31R          6591
+                                                                          AAM-BL-BL880D31L          6591
+       AAM-PR-600109087                               17027               AAM-BL-0BL900LMF          6904
+                                                                         AAM-BL-0BL900RMF           6904
+       AAM-PR-0BH80D31L                               15202               AAM-BL-BL1000LMF          7464
+                                                                         AAM-BL-BL1000RMF           7464
+       Amaron FLO                                                        AAM-BL-BL1300RMF           10243
+                                                                         AAM-BL-BL1500RMF           12171
+       AAM-FL-00040B20L                               4027                AAM-BL-0BL600LMF          5153
+                                                                         AAM-BL-0BL600RMF           5153
+       AAM-FL-00040B20R                               4027              Amaron BLACK (New)
+                                                                         AAM-BL-BL0030RMF           2890
+       AAM-FL-00042B20L                               4287                AAM-BL-BL0040LMF          3204
+                                                                         AAM-BL-BL0040RMF           3204
+       AAM-FL-00042B20R                               4287                AAM-BL-0BL0050LS          5504
+                                                                          AAM-BL-0BL0050RS          5504
+       AAM-FL-0BH40B20L                               4487                AAM-BL-BL0060LMF          4907
+                                                                         AAM-BL-BL0060RMF           4907
+       AAM-FL-0BH45D20L                               6010                AAM-BL-BL0070LMF          5995
+                                                                         AAM-BL-BL0070RMF           5995
+       AAM-FL-0BH90D23L                               6490                AAM-BL-BL0080LMF          6104
+                                                                         AAM-BL-BL0080RMF           6104
+       AAM-FL-545106036                               5486                AAM-BL-BL0090LMF          6551
+                                                                         AAM-BL-BL0090RMF           6551
+       AAM-FL-555112054                               6947                AAM-BL-BL090E41L          6713
+                                                                          AAM-BL-BL090E41R          6713
+       AAM-FL-566112060                               7100                AAM-BL-BL100E41L          7319
+                                                                          AAM-BL-BL100E41R          7319
+       AAM-FL-00080D23L                               6170                AAM-BL-0BL100LMF          7225
+                                                                         AAM-BL-0BL100RMF           7225
+       AAM-FL-550113042                               6072               AAM-BL-0BL130RMF           9893
+                                                                         AAM-BL-0BL150RMF           11792
+       AAM-FL-550114042                               6072
+                                                                            Amaron HIWAY            6906
+       AAM-FL-555111054                               6947               AAM-HW-HC620D31R           7408
+                                                                         AAM-HW-NT650H29R           12207
+       AAM-FL-565106590                               7113               AAM-HW-NT800D04R           14034
+                                                                         AAM-HW-NTX00D04R           15828
+       AAM-FL-580112073                               10358              AAM-HW-HC180D04R           16500
+                                                                         AAM-HW-HCX20H52R           9794
+       AMS-FL-00040B20L                               4027               AAM-HW-NT800E41R           8649
+                                                                         AAM-HW-NT700E41R           10811
+       AMS-FL-00042B20L                               4287               AAM-HW-NT800F51R
+                                                                                                    6803
+       AMS-FL-00042B20R                               4287                Amaron HARVEST            6803
+                                                                         AAM-HR-TR500D31L           7334
+       AMS-FL-550114042                               6072               AAM-HR-TR500D31R           7334
+                                                                         AAM-HR-NT600H29L           7614
+       AMS-FL-565106590                               7113               AAM-HR-NT600H29R           7614
+                                                                         AAM-HR-NT600E41R
+       Amaron GO                                                         AAM-HR-NT600E41L
+
+       AAM-GO-00034B20L                               3762
+
+       AAM-GO-00034B20R                               3762
+
+       AAM-GO-00038B20L                               3473
+
+       AAM-GO-00038B20R                               3473
+
+       AAM-GO-0BH38B20R                               4393
+
+       AAM-GO-00050B24L                               5866
+
+       AAM-GO-00095D26L                               6794
+
+       AAM-GO-00095D26R                               6794
+
+       AAM-GO-565106590                               6857
+
+       AAM-GO-00085D23R                               6438
+
+       AAM-GO-00105D26R                               7466
+
+       AAM-GO-00105D26L                               7466
+
+       AAM-GO-00105D31R                               7318
+
+       AAM-GO-00105D31L                               7318
+
+       AAM-GO-00135D31R                               8008
+
+       AAM-GO-00135D31L                               8008
+
+       Amaron DURO & JADE
+
+       AAM-DR-EFB60B20L                               4449
+
+       AAM-DR-EFB80B24L                               5857
+
+       AAM-DR-EFBDIN70L                               7761
+
+       AAM-DR-EF100D23R                               6547
+
+       AAM-DR-EFBDIN47R                               5865
+
+       AAM-JD-AGMDIN50L                               6308
+
+       AAM-JD-AGMDIN60L                               8566
+
+       AAM-DR-EFBDIN52R                               5926
+
+       Amaron BLACK (Old)
+
+       AAM-BL-BL0300RMF                               3066
+
+Note:
+
+1. Prices are effective from 15th Aug 2026
+
+2. All prices are inclusive of GST
+
+3. Prices are factory activated fully charged batteries
+
+4. Offer is valid till stocks last at select outlets
+
+5. Offer is subject to prior sale
+
+6. Prices are subject to change without notice
+
+           Thrivikram Reddy                      Anupam Singh                     Manish Tuli
+National Sales Lead (South & West)  National Sales Lead (North & East)  Head Sales (India & SAARC)
+

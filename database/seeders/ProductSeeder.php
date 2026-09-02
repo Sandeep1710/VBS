@@ -253,8 +253,13 @@ class ProductSeeder extends Seeder
 
         // Retire any product not in the canonical SKU list.
         // Clean up child rows first; if FK-blocked by orders, deactivate + rename slug/sku.
+        // AAM-*/AMS-* SKUs come from the Amaron manufacturer price list and are
+        // owned by AmaronPriceListSeeder — they are not stale, just not ours.
         $canonical = array_column($products, 'sku');
-        foreach (Product::whereNotIn('sku', $canonical)->get() as $stale) {
+        foreach (Product::whereNotIn('sku', $canonical)
+            ->where('sku', 'not like', 'AAM-%')
+            ->where('sku', 'not like', 'AMS-%')
+            ->get() as $stale) {
             ProductImage::where('product_id', $stale->id)->delete();
             ProductSpecification::where('product_id', $stale->id)->delete();
             Fitment::where('product_id', $stale->id)->delete();
@@ -344,7 +349,10 @@ class ProductSeeder extends Seeder
         // Fitments — every car product attaches to every car variant seeded
         // All active products count as "car products" for fitment purposes
         // (all our vehicle-type categories are variants of car batteries).
-        $carProducts = Product::where('is_active', true)->get();
+        // Scoped to this seeder's own products. The Amaron price-list SKUs carry no
+        // fitment data, and cross-joining 100+ of them against every variant would
+        // add tens of thousands of meaningless rows on each reseed.
+        $carProducts = Product::where('is_active', true)->whereIn('sku', $canonical)->get();
         $carVariants = VehicleVariant::whereHas('vehicleModel.vehicleType', fn ($q) => $q->where('slug', 'car'))->get();
 
         foreach ($carProducts as $product) {
