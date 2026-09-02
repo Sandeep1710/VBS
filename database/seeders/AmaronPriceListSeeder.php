@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\BatteryBrand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductSpecification;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -100,6 +101,26 @@ class AmaronPriceListSeeder extends Seeder
             }
 
             $isNew ? $created++ : $repriced++;
+
+            // Product photo, matched by SKU. Drop a file named after the SKU
+            // (lower-case, .jpg or .png) into storage/app/public/products and the
+            // next reseed picks it up. Images added through admin are never touched.
+            if (! ProductImage::where('product_id', $product->id)->exists()) {
+                foreach (['jpg', 'png'] as $ext) {
+                    $path = 'products/' . strtolower($row['sku']) . '.' . $ext;
+
+                    if (is_file(storage_path('app/public/' . $path))) {
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'path'       => $path,
+                            'alt'        => $row['name'],
+                            'sort_order' => 0,
+                            'is_primary' => true,
+                        ]);
+                        break;
+                    }
+                }
+            }
 
             // Specs are seeded once, on creation, and never overwritten afterwards —
             // only facts the price list actually states.
